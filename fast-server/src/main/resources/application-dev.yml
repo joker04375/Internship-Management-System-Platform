@@ -8,8 +8,8 @@ spring:
   datasource:
     druid:
       url: jdbc:mysql://localhost:3306/fast_boot?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true
-      username: fast
-      password: 123456
+      username: root
+      password: 111111
       initial-size: 5
       min-idle: 10
       max-active: 20

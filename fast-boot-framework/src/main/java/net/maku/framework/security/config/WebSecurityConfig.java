@@ -47,9 +47,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .loginProcessingUrl("/login")
             .and()
             .authorizeRequests()
-            .antMatchers("/oauth/authorize").authenticated()
-            .anyRequest().permitAll()
+            .antMatchers("/oauth/authorize").authenticated()  //只需要用户被验证
+            .anyRequest().permitAll()  //任何没有匹配上的其他的url请求,所有请求都能被放行
+
+
             .and().headers().frameOptions().disable()
+              //禁用X-Frame-Options
+
             .and().csrf().disable()
         ;
     }
@@ -57,5 +61,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) {
         web.ignoring().antMatchers(HttpMethod.OPTIONS);
+        //放过所有options请求
     }
 }

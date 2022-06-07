@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
  * @author 阿沐 babamu@126.com
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true)   //生成equals和hashCode方法
 public class FastException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 

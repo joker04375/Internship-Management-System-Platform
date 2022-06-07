@@ -27,18 +27,18 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 @AllArgsConstructor
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
-    private final AuthenticationManager authenticationManager;
-    private final ClientDetailsService fastClientDetailsService;
-    private final UserDetailsService userDetailsService;
-    private final AuthorizationCodeServices redisAuthorizationCodeServices;
-    private final TokenStore tokenStore;
+    private final AuthenticationManager authenticationManager;  //认证管理器
+    private final ClientDetailsService fastClientDetailsService;  //将客户端client id secret这些信息存储到数据库
+    private final UserDetailsService userDetailsService;  //加载用户信息
+    private final AuthorizationCodeServices redisAuthorizationCodeServices;  //授权码
+    private final TokenStore tokenStore;   //JWT令牌存储方案
 
     /**
      * 配置客户端信息
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.withClientDetails(fastClientDetailsService);
+        clients.withClientDetails(fastClientDetailsService);  //从数据库加载认证信息
     }
 
     @Override

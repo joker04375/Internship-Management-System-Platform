@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 
 /**
- * 异常处理器
- *
+ * 异常处理器   自定义异常
+ * RestControllerAdvice都是对Controller进行增强的，可以全局捕获spring mvc抛的异常。
  * @author 阿沐 babamu@126.com
  */
-@Slf4j
+@Slf4j  //我们只需要在类前面添加注解@Slf4j，即可使用log日志的功能了
 @RestControllerAdvice
 public class FastExceptionHandler {
 	/**
