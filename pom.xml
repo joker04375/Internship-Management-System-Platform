@@ -20,6 +20,9 @@
 	    <module>fast-boot-framework</module>
 		<module>fast-boot-system</module>
         <module>fast-server</module>
+        <module>fast-boot-student</module>
+        <module>fast-boot-college</module>
+        <module>fast-boot-enterprise</module>
     </modules>
 
     <properties>
