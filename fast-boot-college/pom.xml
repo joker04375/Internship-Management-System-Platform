@@ -11,9 +11,19 @@
 
     <artifactId>fast-boot-college</artifactId>
 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>net.maku</groupId>
+            <artifactId>fast-boot-framework</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>net.maku</groupId>
+            <artifactId>fast-boot-system</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+    </dependencies>
+
+
 
 </project>

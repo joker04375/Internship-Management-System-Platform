@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.maku.dao.CollegeUserDao">
+  <select id="getAllUserByRole" resultType="net.maku.system.entity.SysUserEntity">
+    select t1.*, t2.name roleName, (select t4.name from sys_org t4 where t4.id = t1.org_id) orgName
+    from sys_user t1
+    join sys_user_role t3
+    on t1.id = t3.user_id
+    join sys_role t2
+    on t3.role_id = t2.id
+  </select>
+
+</mapper>
