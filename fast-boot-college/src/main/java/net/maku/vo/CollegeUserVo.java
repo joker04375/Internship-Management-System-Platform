@@ -10,18 +10,15 @@ import java.io.Serializable;
 public class CollegeUserVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Schema(name = "账号")
-    private String username;
+
     @Schema(name = "姓名")
     private String realName;
-    @Schema(name = "类别")
-    private Integer roleName;
     @Schema(name = "性别")
     private Integer gender;
+    @Schema(name = "学号/工号")
+    private String idNum;
     @Schema(name = "身份证号")
     private String idCard;
-    @Schema(name = "机构名称")
+    @Schema(name = "所属单位")
     private String orgName;
-    @Schema(name = "状态")
-    private Integer status;
 }

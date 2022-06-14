@@ -7,4 +7,6 @@ import java.util.List;
 public interface CollegeUserDao extends BaseDao<SysUserEntity> {
 
     List<SysUserEntity> getAllUserByRole();
+    List<SysUserEntity> getAllTeachersByRole();
+    List<SysUserEntity> getAllStudentsByRole();
 }
