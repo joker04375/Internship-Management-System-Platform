@@ -36,6 +36,14 @@ public class SysUserEntity extends BaseEntity {
      */
     private String email;
     /**
+    * 身份证
+    * */
+    private String idCard;
+    /**
+     * 工号 / 学号
+     * */
+    private String workNumber;
+    /**
      * 手机号
      */
     private String mobile;
