@@ -2,7 +2,6 @@ package net.maku.enterprise.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
-import net.maku.enterprise.entity.SysOrgDetailsEntity;
 import net.maku.enterprise.entity.SysOrgPracManageEntity;
 import net.maku.enterprise.service.SysOrgPracManageService;
 import net.maku.framework.common.utils.Result;
@@ -66,6 +65,5 @@ public class SysOrgPracManageController {
         sysOrgPracManageService.update(sysOrgPracManageEntity);
         return Result.ok("修改成功");
     }
-
 
 }

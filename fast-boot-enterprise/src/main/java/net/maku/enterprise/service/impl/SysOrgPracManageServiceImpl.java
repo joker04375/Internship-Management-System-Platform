@@ -36,7 +36,9 @@ public class SysOrgPracManageServiceImpl extends BaseServiceImpl<SysOrgPracManag
 
     @Override
     public void update(SysOrgPracManageEntity sysOrgPracManageEntity) {
-        baseMapper.update(sysOrgPracManageEntity,new QueryWrapper<SysOrgPracManageEntity>().eq("org_id", sysOrgPracManageEntity.getOrgId()).eq("prac_id",sysOrgPracManageEntity.getPracId()));
+        baseMapper.update(sysOrgPracManageEntity,new QueryWrapper<SysOrgPracManageEntity>()
+                .eq("org_id", sysOrgPracManageEntity.getOrgId())
+                .eq("prac_id",sysOrgPracManageEntity.getPracId()));
     }
 
     @Override
