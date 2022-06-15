@@ -75,7 +75,6 @@ public class SysOrgController {
 	@PreAuthorize("hasAuthority('sys:org:delete')")
 	public Result<String> delete(@PathVariable("id") Long id){
 		sysOrgService.delete(id);
-
 		return Result.ok();
 	}
 	

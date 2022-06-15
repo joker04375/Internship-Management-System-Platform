@@ -67,7 +67,6 @@ public class SysOrgServiceImpl extends BaseServiceImpl<SysOrgDao, SysOrgEntity> 
 		if(subOrgList.contains(entity.getPid())){
 			throw new FastException("上级机构不能为下级");
 		}
-
 		updateById(entity);
 	}
 
@@ -101,7 +100,6 @@ public class SysOrgServiceImpl extends BaseServiceImpl<SysOrgDao, SysOrgEntity> 
 
 		// 本机构也添加进去
 		subIdList.add(id);
-
 		return subIdList;
 	}
 
