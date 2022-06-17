@@ -3,6 +3,7 @@ package net.maku.enterprise.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.AllArgsConstructor;
 import net.maku.enterprise.dao.SysOrgPracPostDao;
+import net.maku.enterprise.entity.SysAllOrgPostEntity;
 import net.maku.enterprise.entity.SysOrgPracPostEntity;
 import net.maku.enterprise.service.SysOrgPracPostService;
 import net.maku.framework.common.service.impl.BaseServiceImpl;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @description:
+ * @description:企业岗位管理
  * @author: 25652
  * @time: 2022/6/15 18:24
  */
@@ -19,6 +20,10 @@ import java.util.List;
 @AllArgsConstructor
 public class SysOrgPracPostServiceImpl extends BaseServiceImpl<SysOrgPracPostDao, SysOrgPracPostEntity>
         implements SysOrgPracPostService {
+
+    private SysOrgPracPostDao sysOrgPracPostDao;
+
+
     @Override
     public SysOrgPracPostEntity getOnePracPostMessage(Long orgId, Long pracId,Long postId)
     {
@@ -52,4 +57,12 @@ public class SysOrgPracPostServiceImpl extends BaseServiceImpl<SysOrgPracPostDao
                 .eq("prac_id", pracId)
                 .eq("post_id",postId));
     }
+
+    @Override
+    public List<SysAllOrgPostEntity> getAllOrgPost(){
+        List<SysAllOrgPostEntity> allOrgPost = sysOrgPracPostDao.getAllOrgPost();
+        return allOrgPost;
+    }
+
+
 }

@@ -24,9 +24,9 @@ public class SysOrgDetailsController {
 
     @GetMapping("details/{id}")
     @Operation(summary = "企业详情信息")
-    public Result<SysOrgDetailsEntity> getOrgDetails(@PathVariable Long id)
+    public Result<SysOrgDetailsEntity> getOrgDetails(@PathVariable("id") Long orgId)
     {
-        SysOrgDetailsEntity details = sysOrgDetailsService.getDetails(id);
+        SysOrgDetailsEntity details = sysOrgDetailsService.getDetails(orgId);
         return Result.ok(details);
     }
 
