@@ -2,7 +2,6 @@ package net.maku.enterprise.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
-import net.maku.enterprise.entity.SysOrgPracManageEntity;
 import net.maku.enterprise.entity.SysOrgPracPostEntity;
 import net.maku.enterprise.service.SysOrgPracPostService;
 import net.maku.framework.common.utils.Result;

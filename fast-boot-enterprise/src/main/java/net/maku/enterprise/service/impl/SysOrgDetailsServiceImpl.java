@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 
 /**
- * @description: 企业详情管理
+ * @description:
  * @author: 25652
  * @time: 2022/6/10 18:16
  */
