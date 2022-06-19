@@ -4,11 +4,12 @@ package net.maku.enterprise.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import net.maku.framework.common.entity.BaseEntity;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
 @TableName("sys_org_prac_interview")
-public class SysOrgPracInterviewEntity {
+public class SysOrgPracInterviewEntity extends BaseEntity {
 
   /**
    *企业id
