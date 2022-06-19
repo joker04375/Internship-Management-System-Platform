@@ -11,8 +11,6 @@ import net.maku.framework.common.utils.PageListUtils;
 import net.maku.framework.common.utils.Result;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.awt.geom.QuadCurve2D;
 import java.util.List;
 
 /**

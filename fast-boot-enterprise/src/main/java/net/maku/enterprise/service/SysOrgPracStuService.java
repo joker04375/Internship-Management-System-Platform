@@ -20,4 +20,5 @@ public interface SysOrgPracStuService extends BaseService<SysOrgPracStuEntity> {
                                                @PathVariable("pracId") Long pracId);
 
 
+
 }

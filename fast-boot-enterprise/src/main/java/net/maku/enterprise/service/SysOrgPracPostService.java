@@ -20,4 +20,5 @@ public interface SysOrgPracPostService extends BaseService<SysOrgPracPostEntity>
 
     List<SysAllOrgPostEntity> getAllOrgPost();
 
+    void changePostStatus(Integer id,Integer status);
 }

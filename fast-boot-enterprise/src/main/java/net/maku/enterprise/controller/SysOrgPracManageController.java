@@ -9,9 +9,6 @@ import net.maku.framework.common.page.PageResult;
 import net.maku.framework.common.query.Query;
 import net.maku.framework.common.utils.PageListUtils;
 import net.maku.framework.common.utils.Result;
-import net.maku.system.query.SysUserQuery;
-import net.maku.system.vo.SysUserVO;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

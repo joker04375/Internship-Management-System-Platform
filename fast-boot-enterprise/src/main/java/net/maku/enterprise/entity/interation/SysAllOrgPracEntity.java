@@ -1,10 +1,16 @@
 package net.maku.enterprise.entity.interation;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 /**
  * @description:
  * @author: 25652
  * @time: 2022/6/19 13:24
  */
+
+@Data
+@AllArgsConstructor
 public class SysAllOrgPracEntity {
 
     /**
