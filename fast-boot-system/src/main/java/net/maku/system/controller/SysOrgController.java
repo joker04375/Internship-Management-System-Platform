@@ -3,6 +3,7 @@ package net.maku.system.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+
 import net.maku.framework.common.constant.Constant;
 import net.maku.framework.common.utils.Result;
 import net.maku.system.convert.SysOrgConvert;
@@ -75,7 +76,6 @@ public class SysOrgController {
 	@PreAuthorize("hasAuthority('sys:org:delete')")
 	public Result<String> delete(@PathVariable("id") Long id){
 		sysOrgService.delete(id);
-
 		return Result.ok();
 	}
 	

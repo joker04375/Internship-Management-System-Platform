@@ -15,8 +15,18 @@
 			<version>1.0.0</version>
 		</dependency>
 		<dependency>
+			<groupId>net.maku</groupId>
+			<artifactId>fast-boot-college</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
 			<groupId>com.github.xiaoymin</groupId>
 			<artifactId>knife4j-springdoc-ui</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.maku</groupId>
+			<artifactId>fast-boot-enterprise</artifactId>
+			<version>1.0.0</version>
 		</dependency>
 	</dependencies>
 
