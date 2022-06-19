@@ -54,7 +54,6 @@ public class SysOrgPracPostServiceImpl extends BaseServiceImpl<SysOrgPracPostDao
 
     @Override
     public List<SysAllOrgPostEntity> getAllOrgPost(){
-        baseMapper.sele
         List<SysAllOrgPostEntity> allOrgPost = sysOrgPracPostDao.getAllOrgPost();
         return allOrgPost;
     }
