@@ -22,8 +22,10 @@ import java.util.Collection;
 public class SysOrgDetailsServiceImpl extends BaseServiceImpl<SysOrgDetailsDao, SysOrgDetailsEntity> implements SysOrgDetailsService {
 
     @Override
-    public SysOrgDetailsEntity getDetails(Long id) {
-        SysOrgDetailsEntity sysOrgDetailsEntity = baseMapper.selectOne(new QueryWrapper<SysOrgDetailsEntity>().eq("org_id", id));
+
+    public SysOrgDetailsEntity getDetails(Long Id) {
+        SysOrgDetailsEntity sysOrgDetailsEntity = baseMapper.selectOne(new QueryWrapper<SysOrgDetailsEntity>()
+                .eq("org_id",Id));
         return sysOrgDetailsEntity;
     }
 
@@ -33,8 +35,8 @@ public class SysOrgDetailsServiceImpl extends BaseServiceImpl<SysOrgDetailsDao, 
     }
 
     @Override
-    public void delete(Long id) {
-       baseMapper.delete(new QueryWrapper<SysOrgDetailsEntity>().eq("id", id));
+    public void delete(Long Id) {
+       baseMapper.deleteById(Id);
     }
 
 }

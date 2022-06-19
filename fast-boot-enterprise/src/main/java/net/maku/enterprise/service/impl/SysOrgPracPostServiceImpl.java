@@ -3,16 +3,16 @@ package net.maku.enterprise.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.AllArgsConstructor;
 import net.maku.enterprise.dao.SysOrgPracPostDao;
+import net.maku.enterprise.entity.interation.SysAllOrgPostEntity;
 import net.maku.enterprise.entity.SysOrgPracPostEntity;
 import net.maku.enterprise.service.SysOrgPracPostService;
 import net.maku.framework.common.service.impl.BaseServiceImpl;
 import org.springframework.stereotype.Service;
-import net.maku.enterprise.entity.SysAllOrgPostEntity;
 
 import java.util.List;
 
 /**
- * @description:
+ * @description:企业岗位管理
  * @author: 25652
  * @time: 2022/6/15 18:24
  */
@@ -23,13 +23,11 @@ public class SysOrgPracPostServiceImpl extends BaseServiceImpl<SysOrgPracPostDao
 
     private SysOrgPracPostDao sysOrgPracPostDao;
 
+
     @Override
-    public SysOrgPracPostEntity getOnePracPostMessage(Long orgId, Long pracId,Long postId)
+    public SysOrgPracPostEntity getOnePracPostMessage(Long Id)
     {
-        SysOrgPracPostEntity sysOrgPracPostEntity = baseMapper.selectOne(new QueryWrapper<SysOrgPracPostEntity>()
-                .eq("org_id", orgId)
-                .eq("prac_id", pracId)
-                .eq("post_id",postId));
+        SysOrgPracPostEntity sysOrgPracPostEntity = baseMapper.selectById(Id);
         return sysOrgPracPostEntity;
     }
 
@@ -50,16 +48,14 @@ public class SysOrgPracPostServiceImpl extends BaseServiceImpl<SysOrgPracPostDao
     }
 
     @Override
-    public void delete(Long orgId, Long pracId,Long postId) {
-        baseMapper.delete(new QueryWrapper<SysOrgPracPostEntity>()
-                .eq("org_id", orgId)
-                .eq("prac_id", pracId)
-                .eq("post_id",postId));
+    public void delete(Long Id) {
+        baseMapper.deleteById(Id);
     }
-
 
     @Override
     public List<SysAllOrgPostEntity> getAllOrgPost(){
-        return sysOrgPracPostDao.getAllOrgPost();
+        List<SysAllOrgPostEntity> allOrgPost = sysOrgPracPostDao.getAllOrgPost();
+        return allOrgPost;
     }
+
 }

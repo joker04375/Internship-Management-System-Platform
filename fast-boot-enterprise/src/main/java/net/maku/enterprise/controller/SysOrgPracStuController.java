@@ -1,9 +1,13 @@
 package net.maku.enterprise.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import net.maku.enterprise.entity.SysOrgPracStuEntity;
 import net.maku.enterprise.service.SysOrgPracStuService;
+import net.maku.framework.common.page.PageResult;
+import net.maku.framework.common.query.Query;
+import net.maku.framework.common.utils.PageListUtils;
 import net.maku.framework.common.utils.Result;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,38 +28,35 @@ public class SysOrgPracStuController {
 
     public  final SysOrgPracStuService sysOrgPracStuService;
 
-    @GetMapping("stu/{orgId}/{pracId}/{postId}/{stuId}")
-    @Operation(summary = "企业实习岗位单个信息")
-    public Result<SysOrgPracStuEntity> getOrgDetails
-            (@PathVariable("orgId") Long orgId,
-             @PathVariable("pracId") Long pracId ,
-             @PathVariable("postId") Long postId,
-             @PathVariable("stuId") Long stuId)
+    @GetMapping("stu/{id}")
+    @Operation(summary = "企业某个实习中单个学生信息")
+    public Result<SysOrgPracStuEntity> getOneStuDetails(@PathVariable("id") Long Id)
     {
-        SysOrgPracStuEntity onePracMessage = sysOrgPracStuService.getOnePracStuMessage(orgId, pracId,postId,stuId);
+        SysOrgPracStuEntity onePracMessage = sysOrgPracStuService.getOnePracStuMessage(Id);
         return Result.ok(onePracMessage);
     }
 
     @GetMapping("stu/{orgId}/{pracId}")
-    @Operation(summary = "企业实习岗位所有信息")
-    public Result<List<SysOrgPracStuEntity>> getOrgDetails(
+    @Operation(summary = "企业实习一个实习所有学生信息")
+    public Result<PageResult<SysOrgPracStuEntity>> getAllStuDetails(
             @PathVariable("orgId") Long orgId,
             @PathVariable("pracId") Long pracId,
-            @PathVariable("postId") Long postId)
+            @RequestBody Query query
+            )
     {
-        List<SysOrgPracStuEntity> list = sysOrgPracStuService.getAllPracStuMessage(orgId,pracId,postId);
-        return Result.ok(list);
+        List<SysOrgPracStuEntity> list = sysOrgPracStuService.getAllPracStuMessage(orgId,pracId);
+
+        Page pages = PageListUtils.getPages(query.getPage(), query.getLimit(), list);
+        PageResult<SysOrgPracStuEntity> result = new PageResult<>(pages.getRecords(), pages.getTotal());
+        return Result.ok(result);
     }
 
 
-    @DeleteMapping("stu/{orgId}/{pracId}/{postId}")
+    @DeleteMapping("stu/{id}")
     @Operation(summary = "删除")
     public Result<String> delete
-            (@PathVariable("orgId") Long orgId,
-             @PathVariable("pracId") Long pracId,
-             @PathVariable("postId") Long postId,
-             @PathVariable("stuId") Long stuId){
-        sysOrgPracStuService.delete(orgId,pracId,postId,stuId);
+            (@PathVariable("stuId") Long Id){
+        sysOrgPracStuService.delete(Id);
         return Result.ok("删除成功");
     }
 
@@ -72,4 +73,29 @@ public class SysOrgPracStuController {
         sysOrgPracStuService.update(sysOrgPracStuEntity);
         return Result.ok("修改成功");
     }
+
+
+    /**
+     * 纳入笔试名单或者淘汰
+     * @param sysOrgPracStuEntity 学生管理实体类
+     * @return
+     */
+    @PostMapping("stu/changeStuStatus/{changeStatus}")
+    public Result<String> changeStuStatus(@PathVariable("changeStatus") Long changeStatus,
+                                          @RequestBody @Valid SysOrgPracStuEntity sysOrgPracStuEntity)
+    {
+        sysOrgPracStuEntity.setStatus(changeStatus);
+        sysOrgPracStuService.update(sysOrgPracStuEntity);
+        return Result.ok("操作成功");
+    }
+
+
+    @GetMapping("stu/getAllAccessStu/{orgId}/{pracId}")
+    public Result<List<SysOrgPracStuEntity>> getAllAccessOrTestStu(@PathVariable("orgId") Long orgId,
+                                                     @PathVariable("pracId") Long pracId)
+    {
+        List<SysOrgPracStuEntity> allAccessOrTestStu = sysOrgPracStuService.getAllAccessOrTestStu(orgId, pracId);
+        return Result.ok(allAccessOrTestStu);
+    }
+
 }
