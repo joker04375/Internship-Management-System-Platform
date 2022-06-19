@@ -3,7 +3,6 @@
 
 <mapper namespace="net.maku.enterprise.dao.SysOrgPracPostDao">
 
-
     <!--List<SysAllOrgPostEntity> getAllOrgPost();-->
     <select id="getAllOrgPost" resultType="net.maku.enterprise.entity.interation.SysAllOrgPostEntity">
         SELECT w.`prac_name`,v.name,u.post_name,u.post_numb,u.post_ability,
