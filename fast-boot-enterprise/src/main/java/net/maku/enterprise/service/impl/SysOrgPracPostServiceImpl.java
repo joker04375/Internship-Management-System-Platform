@@ -7,6 +7,7 @@ import net.maku.enterprise.entity.SysOrgPracPostEntity;
 import net.maku.enterprise.service.SysOrgPracPostService;
 import net.maku.framework.common.service.impl.BaseServiceImpl;
 import org.springframework.stereotype.Service;
+import net.maku.enterprise.entity.SysAllOrgPostEntity;
 
 import java.util.List;
 
@@ -19,6 +20,9 @@ import java.util.List;
 @AllArgsConstructor
 public class SysOrgPracPostServiceImpl extends BaseServiceImpl<SysOrgPracPostDao, SysOrgPracPostEntity>
         implements SysOrgPracPostService {
+
+    private SysOrgPracPostDao sysOrgPracPostDao;
+
     @Override
     public SysOrgPracPostEntity getOnePracPostMessage(Long orgId, Long pracId,Long postId)
     {
@@ -51,5 +55,11 @@ public class SysOrgPracPostServiceImpl extends BaseServiceImpl<SysOrgPracPostDao
                 .eq("org_id", orgId)
                 .eq("prac_id", pracId)
                 .eq("post_id",postId));
+    }
+
+
+    @Override
+    public List<SysAllOrgPostEntity> getAllOrgPost(){
+        return sysOrgPracPostDao.getAllOrgPost();
     }
 }

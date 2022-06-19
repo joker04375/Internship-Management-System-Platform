@@ -1,5 +1,6 @@
 package net.maku.enterprise.service;
 
+import net.maku.enterprise.entity.SysAllOrgPostEntity;
 import net.maku.enterprise.entity.SysOrgPracPostEntity;
 import net.maku.framework.common.service.BaseService;
 
@@ -15,4 +16,6 @@ public interface SysOrgPracPostService extends BaseService<SysOrgPracPostEntity>
     void update(SysOrgPracPostEntity sysOrgPracPostEntity);
 
     void delete(Long orgId, Long pracId,Long postId) ;
+
+    List<SysAllOrgPostEntity> getAllOrgPost();
 }
