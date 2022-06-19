@@ -11,11 +11,19 @@ import net.maku.system.vo.SysOrgVO;
  */
 public interface SysOrgDetailsService extends BaseService<SysOrgDetailsEntity>{
 
+<<<<<<< HEAD
        SysOrgDetailsEntity getDetails(Long id);
 
         void update(SysOrgDetailsEntity sysOrgDetailsEntity);
 
         void delete(Long id);
+=======
+       SysOrgDetailsEntity getDetails(Long orgId);
+
+        void update(SysOrgDetailsEntity sysOrgDetailsEntity);
+
+        void delete(Long orgId);
+>>>>>>> origin/main
 
 
 }
