@@ -33,6 +33,7 @@ public class CollegeUserController {
     @GetMapping("/info/{roleName}")
     @Operation(summary = "用户管理（针对不同角色）")
     public Result<PageResult<SysUserEntity>> getAllStudents(@Valid Query query, @PathVariable(name = "roleName") String roleName) {
+        // 数据库中查询得到之后再用MapStruct转化为输出对象
         List<SysUserEntity> students = collegeUserService.getAllUserByRole(roleName);
         // 进行分页
         Page pages = PageListUtils.getPages(query.getPage(), query.getLimit(), students);
