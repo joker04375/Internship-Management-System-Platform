@@ -41,5 +41,4 @@ public class CollegeUserController {
         return Result.ok(page);
     }
 
-
 }

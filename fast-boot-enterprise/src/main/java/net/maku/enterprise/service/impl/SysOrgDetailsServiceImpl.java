@@ -11,6 +11,7 @@ import net.maku.system.entity.SysUserRoleEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @description:
@@ -20,6 +21,11 @@ import java.util.Collection;
 @Service
 @AllArgsConstructor
 public class SysOrgDetailsServiceImpl extends BaseServiceImpl<SysOrgDetailsDao, SysOrgDetailsEntity> implements SysOrgDetailsService {
+
+    @Override
+    public List<SysOrgDetailsEntity> getAllOrgDetails() {
+        return baseMapper.selectList(new QueryWrapper<>());
+    }
 
     @Override
 

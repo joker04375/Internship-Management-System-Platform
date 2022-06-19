@@ -20,12 +20,6 @@ import java.util.List;
 @AllArgsConstructor
 public class CollegeUserServiceImpl extends BaseServiceImpl<CollegeUserDao, SysUserEntity> implements CollegeUserService {
 
-//    @Override
-//    public List<CollegeUserVo> getAllUserByRole(String roleName) {
-//        List<SysUserEntity> users = baseMapper.getAllUserByRole(roleName);
-//        return SysUserConvert.INSTANCE.convertList(users);
-//    }
-
     @Override
     public List<SysUserEntity> getAllUserByRole(String roleName) {
         List<SysUserEntity> users = baseMapper.getAllUserByRole(roleName);
