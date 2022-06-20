@@ -22,9 +22,9 @@ public class SysOrgDetailsController {
 
     private final SysOrgDetailsService sysOrgDetailsService;
 
-    @GetMapping("details/{id}")
+    @GetMapping("details/{orgId}")
     @Operation(summary = "企业详情信息")
-    public Result<SysOrgDetailsEntity> getOrgDetails(@PathVariable Long id)
+    public Result<SysOrgDetailsEntity> getOrgDetails(@PathVariable("orgId") Long id)
     {
         SysOrgDetailsEntity details = sysOrgDetailsService.getDetails(id);
         return Result.ok(details);

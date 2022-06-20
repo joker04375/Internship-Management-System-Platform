@@ -1,11 +1,11 @@
 package net.maku.enterprise.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
+
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.AllArgsConstructor;
 import net.maku.enterprise.dao.SysOrgPracManageDao;
-import net.maku.enterprise.entity.SysOrgDetailsEntity;
 import net.maku.enterprise.entity.SysOrgPracManageEntity;
+import net.maku.enterprise.entity.interation.SysAllOrgPracEntity;
 import net.maku.enterprise.service.SysOrgPracManageService;
 import net.maku.framework.common.service.impl.BaseServiceImpl;
 import org.springframework.stereotype.Service;
@@ -22,9 +22,9 @@ import java.util.List;
 public class SysOrgPracManageServiceImpl extends BaseServiceImpl<SysOrgPracManageDao, SysOrgPracManageEntity> implements SysOrgPracManageService {
 
     @Override
-    public SysOrgPracManageEntity getOnePracMessage(Long orgId, Long pracId)
+    public SysOrgPracManageEntity getOnePracMessage(Long Id)
     {
-        SysOrgPracManageEntity sysOrgPracManageEntity = baseMapper.selectOne(new QueryWrapper<SysOrgPracManageEntity>().eq("org_id", orgId).eq("prac_id", pracId));
+        SysOrgPracManageEntity sysOrgPracManageEntity = baseMapper.selectById(Id);
         return sysOrgPracManageEntity;
     }
 
@@ -42,8 +42,14 @@ public class SysOrgPracManageServiceImpl extends BaseServiceImpl<SysOrgPracManag
     }
 
     @Override
-    public void delete(Long orgId, Long pracId) {
-        baseMapper.delete(new QueryWrapper<SysOrgPracManageEntity>().eq("org_id", orgId).eq("prac_id", pracId));
+    public void delete(Long Id) {
+        baseMapper.deleteById(Id);
     }
+
+    @Override
+    public List<SysAllOrgPracEntity> getAllPrac() {
+        return baseMapper.getAllPrac();
+    }
+
 
 }

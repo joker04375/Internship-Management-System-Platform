@@ -3,6 +3,7 @@ package net.maku.enterprise.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import javafx.print.PaperSource;
 import lombok.AllArgsConstructor;
+import net.maku.enterprise.common.OrgConstants;
 import net.maku.enterprise.dao.SysOrgPracStuDao;
 import net.maku.enterprise.entity.SysOrgPracPostEntity;
 import net.maku.enterprise.entity.SysOrgPracStuEntity;
@@ -25,21 +26,16 @@ public class SysOrgPracStuServiceImpl extends BaseServiceImpl<SysOrgPracStuDao, 
 
 
     @Override
-    public SysOrgPracStuEntity getOnePracStuMessage(Long orgId, Long pracId, Long postId,Long stuId) {
-        SysOrgPracStuEntity sysOrgPracStuEntity = baseMapper.selectOne(new QueryWrapper<SysOrgPracStuEntity>()
-                .eq("org_id", orgId)
-                .eq("prac_id", pracId)
-                .eq("post_id",postId)
-                .eq("stu_id",stuId));
+    public SysOrgPracStuEntity getOnePracStuMessage(Long Id) {
+        SysOrgPracStuEntity sysOrgPracStuEntity = baseMapper.selectById(Id);
         return sysOrgPracStuEntity;
     }
 
     @Override
-    public List<SysOrgPracStuEntity> getAllPracStuMessage(Long orgId, Long pracId, Long postId) {
+    public List<SysOrgPracStuEntity> getAllPracStuMessage(Long orgId, Long pracId) {
         List<SysOrgPracStuEntity> list = baseMapper.selectList(new QueryWrapper<SysOrgPracStuEntity>()
                 .eq("org_id",orgId)
-                .eq("prac_id",pracId)
-                .eq("post_id",postId));
+                .eq("prac_id",pracId));
         return list;
     }
 
@@ -49,15 +45,20 @@ public class SysOrgPracStuServiceImpl extends BaseServiceImpl<SysOrgPracStuDao, 
                 .eq("org_id", sysOrgPracStuEntity.getOrgId())
                 .eq("prac_id",sysOrgPracStuEntity.getPracId())
                 .eq("post_id",sysOrgPracStuEntity.getPostId())
-                .eq("stu_id", sysOrgPracStuEntity.getPracId()));
+                .eq("stu_id", sysOrgPracStuEntity.getStuId()));
     }
 
     @Override
-    public void delete(Long orgId, Long pracId, Long postId, Long stuId) {
-        baseMapper.delete(new QueryWrapper<SysOrgPracStuEntity>()
+    public void delete(Long Id) {
+        baseMapper.deleteById(Id);
+    }
+
+    @Override
+    public List<SysOrgPracStuEntity> getAllAccessOrTestStu(Long orgId, Long pracId) {
+        List<SysOrgPracStuEntity> stuEntities = baseMapper.selectList(new QueryWrapper<SysOrgPracStuEntity>()
                 .eq("org_id", orgId)
-                .eq("prac_id",pracId)
-                .eq("post_id",postId)
-                .eq("stu_id", stuId));
+                .eq("prac_id", pracId)
+                .between("status", OrgConstants.STU_STATUS_TEST, OrgConstants.STU_STATUS_SUCCESS));
+        return stuEntities;
     }
 }

@@ -4,6 +4,8 @@ import net.maku.enterprise.entity.SysOrgDetailsEntity;
 import net.maku.framework.common.service.BaseService;
 import net.maku.system.vo.SysOrgVO;
 
+import java.util.List;
+
 /**
  * 企业详情信息管理
  *
@@ -11,11 +13,15 @@ import net.maku.system.vo.SysOrgVO;
  */
 public interface SysOrgDetailsService extends BaseService<SysOrgDetailsEntity>{
 
-       SysOrgDetailsEntity getDetails(Long id);
+        /**
+        * author: leo
+        * */
+        List<SysOrgDetailsEntity> getAllOrgDetails();
+
+        SysOrgDetailsEntity getDetails(Long Id);
 
         void update(SysOrgDetailsEntity sysOrgDetailsEntity);
 
-        void delete(Long id);
-
+        void delete(Long Id);
 
 }

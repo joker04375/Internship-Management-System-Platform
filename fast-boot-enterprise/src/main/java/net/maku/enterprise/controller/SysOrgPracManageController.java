@@ -1,9 +1,13 @@
 package net.maku.enterprise.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import net.maku.enterprise.entity.SysOrgPracManageEntity;
 import net.maku.enterprise.service.SysOrgPracManageService;
+import net.maku.framework.common.page.PageResult;
+import net.maku.framework.common.query.Query;
+import net.maku.framework.common.utils.PageListUtils;
 import net.maku.framework.common.utils.Result;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,29 +30,36 @@ public class SysOrgPracManageController {
     private final SysOrgPracManageService sysOrgPracManageService;
 
 
+    @GetMapping("page/{orgId}")
+    @Operation(summary = "分页")
+    public Result<PageResult<SysOrgPracManageEntity>> page(@Valid Query query,@PathVariable("orgId") Long orgId){
+        List<SysOrgPracManageEntity> allPracMessage = sysOrgPracManageService.getAllPracMessage(orgId);
+        Page pages = PageListUtils.getPages(query.getPage(), query.getLimit(), allPracMessage);
+        PageResult<SysOrgPracManageEntity> result = new PageResult<>(pages.getRecords(), pages.getTotal());
+        return Result.ok(result);
+    }
 
-
-    @GetMapping("manage/{orgId}/{pracId}")
+    @GetMapping("manage/{id}")
     @Operation(summary = "企业实习信息")
-    public Result<SysOrgPracManageEntity> getOrgDetails(@PathVariable("orgId") Long orgId,@PathVariable("pracId") Long pracId)
+    public Result<SysOrgPracManageEntity> getOneOrgPracDetail(@PathVariable("id") Long Id)
     {
-        SysOrgPracManageEntity onePracMessage = sysOrgPracManageService.getOnePracMessage(orgId, pracId);
+        SysOrgPracManageEntity onePracMessage = sysOrgPracManageService.getOnePracMessage(Id);
         return Result.ok(onePracMessage);
     }
 
     @GetMapping("manage/{orgId}")
     @Operation(summary = "企业实习信息")
-    public Result<List<SysOrgPracManageEntity>> getOrgDetails(@PathVariable Long orgId)
+    public Result<List<SysOrgPracManageEntity>> getAllOrgPracDetails(@PathVariable Long orgId)
     {
         List<SysOrgPracManageEntity> list = sysOrgPracManageService.getAllPracMessage(orgId);
         return Result.ok(list);
     }
 
 
-    @DeleteMapping("manage/{orgId}/{pracId}")
+    @DeleteMapping("manage/{id}")
     @Operation(summary = "删除")
-    public Result<String> delete(@PathVariable("orgId") Long orgId,@PathVariable("pracId") Long pracId){
-        sysOrgPracManageService.delete(orgId,pracId);
+    public Result<String> delete(@PathVariable("id") Long Id){
+        sysOrgPracManageService.delete(Id);
         return Result.ok("删除成功");
     }
 

@@ -70,6 +70,9 @@ public class SysOrgPracPostEntity extends BaseEntity {
    */
   private String postOthers;
 
-
+  /**
+   * 审查状态
+   */
+  private Integer status;
 
 }

@@ -55,7 +55,7 @@ public class SysOrgPracStuEntity {
   private String post;
 
   /**
-   *学生状态
+   *学生状态 -1为淘汰 0为报名中 1为正在进行本轮测试 2为通过本轮测试 3为已录取 4为正在实习
    */
   private long status;
 
