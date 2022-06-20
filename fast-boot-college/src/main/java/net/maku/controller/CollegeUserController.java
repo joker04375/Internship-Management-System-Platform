@@ -15,10 +15,7 @@ import net.maku.service.CollegeUserService;
 import net.maku.system.entity.SysUserEntity;
 import net.maku.vo.CollegeUserVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -32,8 +29,7 @@ public class CollegeUserController {
 
     @GetMapping("/info/{roleName}")
     @Operation(summary = "用户管理（针对不同角色）")
-    public Result<PageResult<SysUserEntity>> getAllStudents(@Valid Query query, @PathVariable(name = "roleName") String roleName) {
-        // 数据库中查询得到之后再用MapStruct转化为输出对象
+    public Result<PageResult<SysUserEntity>> getAllStudents(@RequestBody Query query, @PathVariable(name = "roleName") String roleName) {
         List<SysUserEntity> students = collegeUserService.getAllUserByRole(roleName);
         // 进行分页
         Page pages = PageListUtils.getPages(query.getPage(), query.getLimit(), students);
