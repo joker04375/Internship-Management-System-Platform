@@ -28,7 +28,6 @@ public class SysOrgDetailsServiceImpl extends BaseServiceImpl<SysOrgDetailsDao, 
     }
 
     @Override
-
     public SysOrgDetailsEntity getDetails(Long Id) {
         SysOrgDetailsEntity sysOrgDetailsEntity = baseMapper.selectOne(new QueryWrapper<SysOrgDetailsEntity>()
                 .eq("org_id",Id));

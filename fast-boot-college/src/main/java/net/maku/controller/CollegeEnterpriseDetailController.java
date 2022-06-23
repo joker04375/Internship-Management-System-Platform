@@ -10,10 +10,7 @@ import net.maku.framework.common.page.PageResult;
 import net.maku.framework.common.query.Query;
 import net.maku.framework.common.utils.PageListUtils;
 import net.maku.framework.common.utils.Result;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -27,7 +24,7 @@ public class CollegeEnterpriseDetailController {
 
     @GetMapping("home")
     @Operation(summary = "企业管理")
-    public Result<PageResult<SysOrgDetailsEntity>> getAllEnterprise(@Valid Query query){
+    public Result<PageResult<SysOrgDetailsEntity>> getAllEnterprise(@RequestBody Query query){
         List<SysOrgDetailsEntity> allEnterprise = sysOrgDetailsService.getAllOrgDetails();
         // 进行分页
         Page pages = PageListUtils.getPages(query.getPage(), query.getLimit(), allEnterprise);

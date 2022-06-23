@@ -40,7 +40,7 @@ public class SysOrgPracFileEntity extends BaseEntity {
   /**
    *上传时间
    */
-  private java.sql.Date uploadTime;
+  private java.sql.Timestamp uploadTime;
 
   /**
    *文件路径
@@ -48,7 +48,12 @@ public class SysOrgPracFileEntity extends BaseEntity {
   private String fileAddr;
 
 
+  /**
+   *  leo
+   */
+  private long orgId;
 
+  private long pracId;
 
 
 }
