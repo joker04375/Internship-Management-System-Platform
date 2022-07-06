@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import net.maku.enterprise.common.OrgConstants;
 import net.maku.enterprise.entity.SysOrgPracPostEntity;
+import net.maku.enterprise.entity.interation.SysAllOrgPostEntity;
 import net.maku.enterprise.service.SysOrgPracPostService;
 import net.maku.framework.common.page.PageResult;
 import net.maku.framework.common.query.Query;
@@ -69,7 +70,7 @@ public class SysOrgPracPostController {
 
     @PostMapping("post")
     @Operation(summary = "保存")
-    public Result<String> save(@RequestBody @Valid SysOrgPracPostEntity sysOrgPracPostEntity){
+    public Result<String> save(@RequestBody  SysOrgPracPostEntity sysOrgPracPostEntity){
 
         /**
          * 根据时间戳生成唯一id
@@ -97,14 +98,14 @@ public class SysOrgPracPostController {
     }
 
 
-    //测试的代码
-    /*@GetMapping("post/all")
-    public Result<List<SysAllOrgPostEntity>> test()
+
+    @GetMapping("post/all")
+    public Result<PageResult<SysAllOrgPostEntity>> getAllPost(@RequestBody Query query)
     {
         List<SysAllOrgPostEntity> allOrgPost = sysOrgPracPostService.getAllOrgPost();
-        return Result.ok(allOrgPost);
-    }*/
-
-
+        Page pages = PageListUtils.getPages(query.getPage(), query.getLimit(), allOrgPost);
+        PageResult<SysAllOrgPostEntity> result = new PageResult<>(pages.getRecords(), pages.getTotal());
+        return Result.ok(result);
+    }
 
 }

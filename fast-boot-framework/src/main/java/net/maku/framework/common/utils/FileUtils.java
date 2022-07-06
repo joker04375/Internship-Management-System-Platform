@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class FileUtils {
 
-    public static final String rootPath = "C://Users//test";
+    public static final String rootPath = "D:\\Atest";
 
     public static String uploadCommonFile(MultipartFile file) {
         File fileDir = new File(rootPath);
@@ -17,7 +17,7 @@ public class FileUtils {
 
         //使用uuid工具
         String uuid = UUID.randomUUID() +"";
-        String storagePath = rootPath +"/"+uuid+"_"+file.getOriginalFilename();
+        String storagePath = rootPath +"\\"+uuid+"_"+file.getOriginalFilename();
 
         try {
             file.transferTo(new File(storagePath));

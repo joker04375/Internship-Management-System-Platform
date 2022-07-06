@@ -64,10 +64,4 @@ public class SysOrgPracFileController {
         return Result.ok(result);
     }
 
-
-
-
-
-
-
 }
