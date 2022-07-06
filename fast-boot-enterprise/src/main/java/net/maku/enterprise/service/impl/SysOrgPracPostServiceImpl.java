@@ -40,16 +40,33 @@ public class SysOrgPracPostServiceImpl extends BaseServiceImpl<SysOrgPracPostDao
     }
 
     @Override
-    public void update(SysOrgPracPostEntity sysOrgPracPostEntity) {
-        baseMapper.update(sysOrgPracPostEntity,new QueryWrapper<SysOrgPracPostEntity>()
+    public Boolean update(SysOrgPracPostEntity sysOrgPracPostEntity) {
+        SysOrgPracPostEntity entity = baseMapper.selectOne(new QueryWrapper<SysOrgPracPostEntity>()
+                .eq("id",sysOrgPracPostEntity.getId())
                 .eq("org_id", sysOrgPracPostEntity.getOrgId())
-                .eq("prac_id",sysOrgPracPostEntity.getPracId())
-                .eq("post_id",sysOrgPracPostEntity.getPostId()));
+                .eq("prac_id", sysOrgPracPostEntity.getPracId())
+                .eq("post_id", sysOrgPracPostEntity.getPostId()));
+        if(entity==null)
+        {
+            return false;
+        }
+        baseMapper.updateById(sysOrgPracPostEntity);
+        return true;
     }
 
     @Override
-    public void delete(Long Id) {
+    public Boolean delete(Long Id,Long orgId,Long pracId,Long postId) {
+        SysOrgPracPostEntity entity = baseMapper.selectOne(new QueryWrapper<SysOrgPracPostEntity>()
+                .eq("id",Id)
+                .eq("org_id", orgId)
+                .eq("prac_id", pracId)
+                .eq("post_id", postId));
+        if(entity==null)
+        {
+            return false;
+        }
         baseMapper.deleteById(Id);
+        return true;
     }
 
     @Override

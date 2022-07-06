@@ -1,16 +1,13 @@
 package net.maku.enterprise.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.injector.methods.DeleteById;
 import lombok.AllArgsConstructor;
 import net.maku.enterprise.dao.SysOrgDetailsDao;
 import net.maku.enterprise.entity.SysOrgDetailsEntity;
 import net.maku.enterprise.service.SysOrgDetailsService;
 import net.maku.framework.common.service.impl.BaseServiceImpl;
-import net.maku.system.entity.SysUserRoleEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -35,13 +32,31 @@ public class SysOrgDetailsServiceImpl extends BaseServiceImpl<SysOrgDetailsDao, 
     }
 
     @Override
-    public void update(SysOrgDetailsEntity sysOrgDetailsEntity) {
+    public Boolean update(SysOrgDetailsEntity sysOrgDetailsEntity) {
+        SysOrgDetailsEntity entity = baseMapper.selectOne(new QueryWrapper<SysOrgDetailsEntity>()
+                .eq("id", sysOrgDetailsEntity.getId())
+                .eq("org_id", sysOrgDetailsEntity.getOrgId()));
+        if(entity==null)
+        {
+            return false;
+        }
         updateById(sysOrgDetailsEntity);
+        return true;
     }
 
     @Override
-    public void delete(Long Id) {
-       baseMapper.deleteById(Id);
+    public Boolean delete(Long Id,Long orgId) {
+        SysOrgDetailsEntity entity = baseMapper.selectOne(new QueryWrapper<SysOrgDetailsEntity>()
+                .eq("id", Id)
+                .eq("org_id", orgId));
+        if(entity==null)
+        {
+            return false;
+        }
+        baseMapper.delete(new QueryWrapper<SysOrgDetailsEntity>()
+                .eq("id", Id)
+                .eq("org_id", orgId));
+        return true;
     }
 
 }

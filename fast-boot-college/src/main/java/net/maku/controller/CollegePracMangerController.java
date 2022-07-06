@@ -136,7 +136,7 @@ public class CollegePracMangerController {
         }
 
         java.sql.Timestamp timestamp = new Timestamp(date.getTime());
-        sysOrgPracFileEntity.setUploadTime(timestamp);
+        sysOrgPracFileEntity.setUploadTime(String.valueOf(timestamp));
 
         sysOrgPracFileEntity.setOrgId(orgId);
         sysOrgPracFileEntity.setPracId(pracId);

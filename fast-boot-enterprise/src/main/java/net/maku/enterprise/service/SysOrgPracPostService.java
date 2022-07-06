@@ -14,11 +14,20 @@ public interface SysOrgPracPostService extends BaseService<SysOrgPracPostEntity>
 
     List<SysOrgPracPostEntity> getAllPracPostMessage(Long orgId,Long pracId);
 
-    void update(SysOrgPracPostEntity sysOrgPracPostEntity);
+    Boolean update(SysOrgPracPostEntity sysOrgPracPostEntity);
 
-    void delete(Long Id) ;
+    Boolean delete(Long Id,Long orgId,Long pracId,Long postId) ;
 
+    /**
+     *给学生
+     * @return
+     */
     List<SysAllOrgPostEntity> getAllOrgPost();
 
+    /**
+     * 学院审核岗位
+     * @param id
+     * @param status
+     */
     void changePostStatus(Integer id,Integer status);
 }

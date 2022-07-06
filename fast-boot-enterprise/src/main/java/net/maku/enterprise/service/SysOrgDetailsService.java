@@ -20,8 +20,8 @@ public interface SysOrgDetailsService extends BaseService<SysOrgDetailsEntity>{
 
         SysOrgDetailsEntity getDetails(Long Id);
 
-        void update(SysOrgDetailsEntity sysOrgDetailsEntity);
+        Boolean update(SysOrgDetailsEntity sysOrgDetailsEntity);
 
-        void delete(Long Id);
+        Boolean delete(Long Id,Long orgId);
 
 }

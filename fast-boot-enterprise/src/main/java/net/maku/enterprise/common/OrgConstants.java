@@ -15,8 +15,22 @@ public class OrgConstants {
 
 
 
+    /**
+     *企业实习岗位审查状态 ：不通过
+     */
+    public static final Integer POST_STATUS_OUT = -1;
 
 
+    /**
+     *企业实习岗位审查状态 ：通过
+     */
+    public static final Integer POST_STATUS_PASS = 1;
+
+
+    /**
+     *企业实习岗位审查状态 ：不通过
+     */
+    public static final Integer POST_STATUS_WAIT = 0;
 
 
     /**
@@ -48,5 +62,10 @@ public class OrgConstants {
      *学生申请岗位状态 ：正在实习
      */
     public static final Integer STU_STATUS_WORKING = 4;
+
+    /**
+     *学生申请岗位状态 ：实习结束
+     */
+    public static final Integer STU_STATUS_WORKEND = 5;
 
 }

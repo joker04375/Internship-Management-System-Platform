@@ -36,7 +36,7 @@ public class SysOrgPracStuController {
         return Result.ok(onePracMessage);
     }
 
-    @GetMapping("stu/{orgId}/{pracId}")
+    @GetMapping("stu/page/{orgId}/{pracId}")
     @Operation(summary = "企业实习一个实习所有学生信息")
     public Result<PageResult<SysOrgPracStuEntity>> getAllStuDetails(
             @PathVariable("orgId") Long orgId,
@@ -45,19 +45,23 @@ public class SysOrgPracStuController {
             )
     {
         List<SysOrgPracStuEntity> list = sysOrgPracStuService.getAllPracStuMessage(orgId,pracId);
-
         Page pages = PageListUtils.getPages(query.getPage(), query.getLimit(), list);
         PageResult<SysOrgPracStuEntity> result = new PageResult<>(pages.getRecords(), pages.getTotal());
         return Result.ok(result);
     }
 
 
-    @DeleteMapping("stu/{id}")
+    @DeleteMapping("stu/{id}/{orgId}/{pracId}/{stuId}")
     @Operation(summary = "删除")
-    public Result<String> delete
-            (@PathVariable("stuId") Long Id){
-        sysOrgPracStuService.delete(Id);
-        return Result.ok("删除成功");
+    public Result<String> delete(@PathVariable("id") Long Id,
+                                 @PathVariable("orgId") Long orgId,
+                                 @PathVariable("pracId") Long pracId,
+                                 @PathVariable("stuId") Long stuId){
+        Boolean flag = sysOrgPracStuService.delete(Id, orgId, pracId, stuId);
+        if(flag) {
+            return Result.ok("删除成功");
+        }
+        return Result.error("非法操作");
     }
 
     @PostMapping("stu")
@@ -70,8 +74,11 @@ public class SysOrgPracStuController {
     @PutMapping("stu")
     @Operation(summary = "修改")
     public Result<String> update(@RequestBody @Valid SysOrgPracStuEntity sysOrgPracStuEntity){
-        sysOrgPracStuService.update(sysOrgPracStuEntity);
-        return Result.ok("修改成功");
+        Boolean flag = sysOrgPracStuService.update(sysOrgPracStuEntity);
+        if(flag) {
+            return Result.ok("修改成功");
+        }
+        return Result.error("操作非法");
     }
 
 
@@ -85,17 +92,63 @@ public class SysOrgPracStuController {
                                           @RequestBody @Valid SysOrgPracStuEntity sysOrgPracStuEntity)
     {
         sysOrgPracStuEntity.setStatus(changeStatus);
-        sysOrgPracStuService.update(sysOrgPracStuEntity);
-        return Result.ok("操作成功");
+        Boolean flag = sysOrgPracStuService.update(sysOrgPracStuEntity);
+        if(flag) {
+            return Result.ok("修改成功");
+        }
+        return Result.error("操作非法");
     }
 
 
-    @GetMapping("stu/getAllAccessStu/{orgId}/{pracId}")
-    public Result<List<SysOrgPracStuEntity>> getAllAccessOrTestStu(@PathVariable("orgId") Long orgId,
-                                                     @PathVariable("pracId") Long pracId)
+    /**
+     *获取某个企业实习中的报名中的学生
+     * @param orgId
+     * @param pracId
+     * @return
+     */
+    @GetMapping("stu/page/getAllApplyStu/{orgId}/{pracId}")
+    public Result<PageResult<SysOrgPracStuEntity>> getAllApplyStu(@PathVariable("orgId") Long orgId,
+                                                            @PathVariable("pracId") Long pracId,
+                                                            @RequestBody Query query)
     {
-        List<SysOrgPracStuEntity> allAccessOrTestStu = sysOrgPracStuService.getAllAccessOrTestStu(orgId, pracId);
-        return Result.ok(allAccessOrTestStu);
+        List<SysOrgPracStuEntity> list = sysOrgPracStuService.getAllApplyStu(orgId, pracId);
+        Page pages = PageListUtils.getPages(query.getPage(), query.getLimit(), list);
+        PageResult<SysOrgPracStuEntity> result = new PageResult<>(pages.getRecords(), pages.getTotal());
+        return Result.ok(result);
+    }
+
+    /**
+     *获取某个企业实习中正在实习的学生
+     * @param orgId
+     * @param pracId
+     * @return
+     */
+    @GetMapping("stu/page/getAllWorkingStu/{orgId}/{pracId}")
+    public Result<PageResult<SysOrgPracStuEntity>> getAllWorkingStu(@PathVariable("orgId") Long orgId,
+                                                              @PathVariable("pracId") Long pracId,
+                                                              @RequestBody Query query)
+    {
+        List<SysOrgPracStuEntity> list = sysOrgPracStuService.getAllWorkingStu(orgId, pracId);
+        Page pages = PageListUtils.getPages(query.getPage(), query.getLimit(), list);
+        PageResult<SysOrgPracStuEntity> result = new PageResult<>(pages.getRecords(), pages.getTotal());
+        return Result.ok(result);
+    }
+
+    /**
+     *获取某个企业实习中的被淘汰学生
+     * @param orgId
+     * @param pracId
+     * @return
+     */
+    @GetMapping("stu/page/getAllOutStu/{orgId}/{pracId}")
+    public Result<PageResult<SysOrgPracStuEntity>> getAllOutStu(@PathVariable("orgId") Long orgId,
+                                                          @PathVariable("pracId") Long pracId,
+                                                          @RequestBody Query query)
+    {
+        List<SysOrgPracStuEntity> list = sysOrgPracStuService.getAllOutStu(orgId, pracId);
+        Page pages = PageListUtils.getPages(query.getPage(), query.getLimit(), list);
+        PageResult<SysOrgPracStuEntity> result = new PageResult<>(pages.getRecords(), pages.getTotal());
+        return Result.ok(result);
     }
 
 }

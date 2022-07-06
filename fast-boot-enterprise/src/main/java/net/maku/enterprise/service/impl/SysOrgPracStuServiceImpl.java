@@ -1,11 +1,9 @@
 package net.maku.enterprise.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import javafx.print.PaperSource;
 import lombok.AllArgsConstructor;
 import net.maku.enterprise.common.OrgConstants;
 import net.maku.enterprise.dao.SysOrgPracStuDao;
-import net.maku.enterprise.entity.SysOrgPracPostEntity;
 import net.maku.enterprise.entity.SysOrgPracStuEntity;
 import net.maku.enterprise.service.SysOrgPracStuService;
 import net.maku.framework.common.service.impl.BaseServiceImpl;
@@ -40,25 +38,71 @@ public class SysOrgPracStuServiceImpl extends BaseServiceImpl<SysOrgPracStuDao, 
     }
 
     @Override
-    public void update(SysOrgPracStuEntity sysOrgPracStuEntity) {
+    public Boolean update(SysOrgPracStuEntity sysOrgPracStuEntity) {
+        SysOrgPracStuEntity entity = baseMapper.selectOne(new QueryWrapper<SysOrgPracStuEntity>()
+                .eq("id",sysOrgPracStuEntity.getId())
+                .eq("org_id", sysOrgPracStuEntity.getOrgId())
+                .eq("prac_id",sysOrgPracStuEntity.getPracId())
+                .eq("stu_id", sysOrgPracStuEntity.getStuId()));
+        if(entity==null) {
+            return false;
+        }
         baseMapper.update(sysOrgPracStuEntity,new QueryWrapper<SysOrgPracStuEntity>()
                 .eq("org_id", sysOrgPracStuEntity.getOrgId())
                 .eq("prac_id",sysOrgPracStuEntity.getPracId())
-                .eq("post_id",sysOrgPracStuEntity.getPostId())
                 .eq("stu_id", sysOrgPracStuEntity.getStuId()));
+        return true;
     }
 
     @Override
-    public void delete(Long Id) {
+    public Boolean delete(Long Id,Long orgId, Long pracId,Long stuId) {
+        SysOrgPracStuEntity entity = baseMapper.selectOne(new QueryWrapper<SysOrgPracStuEntity>()
+                .eq("id", Id)
+                .eq("org_id", orgId)
+                .eq("prac_id", pracId)
+                .eq("stu_id", stuId));
+        if(entity==null) {
+            return false;
+        }
         baseMapper.deleteById(Id);
+        return true;
     }
 
     @Override
-    public List<SysOrgPracStuEntity> getAllAccessOrTestStu(Long orgId, Long pracId) {
+    public List<SysOrgPracStuEntity> getAllApplyStu(Long orgId, Long pracId) {
         List<SysOrgPracStuEntity> stuEntities = baseMapper.selectList(new QueryWrapper<SysOrgPracStuEntity>()
                 .eq("org_id", orgId)
                 .eq("prac_id", pracId)
-                .between("status", OrgConstants.STU_STATUS_TEST, OrgConstants.STU_STATUS_SUCCESS));
+                .eq("status",OrgConstants.STU_STATUS_APPLY));
         return stuEntities;
     }
+
+
+
+    @Override
+    public List<SysOrgPracStuEntity> getAllWorkingStu(Long orgId, Long pracId) {
+        List<SysOrgPracStuEntity> stuEntities = baseMapper.selectList(new QueryWrapper<SysOrgPracStuEntity>()
+                .eq("org_id", orgId)
+                .eq("prac_id", pracId)
+                .eq("status",OrgConstants.STU_STATUS_WORKING));
+        return stuEntities;
+    }
+
+    @Override
+    public List<SysOrgPracStuEntity> getAllOutStu(Long orgId, Long pracId) {
+        List<SysOrgPracStuEntity> stuEntities = baseMapper.selectList(new QueryWrapper<SysOrgPracStuEntity>()
+                .eq("org_id", orgId)
+                .eq("prac_id", pracId)
+                .eq("status",OrgConstants.STU_STATUS_OUT));
+        return stuEntities;
+    }
+
+   /* @Override
+    public void addApplyStu(SysStuApplyPostDTO DTO) {
+        SysOrgPracStuEntity stuEntity = new SysOrgPracStuEntity(DTO);
+        baseMapper.insert(stuEntity);
+    }*/
+
+
+
 }

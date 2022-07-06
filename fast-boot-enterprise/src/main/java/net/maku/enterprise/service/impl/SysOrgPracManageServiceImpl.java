@@ -35,20 +35,47 @@ public class SysOrgPracManageServiceImpl extends BaseServiceImpl<SysOrgPracManag
     }
 
     @Override
-    public void update(SysOrgPracManageEntity sysOrgPracManageEntity) {
+    public Boolean update(SysOrgPracManageEntity sysOrgPracManageEntity) {
+        SysOrgPracManageEntity entity = baseMapper.selectOne(new QueryWrapper<SysOrgPracManageEntity>()
+                .eq("org_id", sysOrgPracManageEntity.getOrgId())
+                .eq("prac_id", sysOrgPracManageEntity.getPracId())
+                .eq("id", sysOrgPracManageEntity.getId()));
+
+        if(entity==null)
+        {
+            return false;
+        }
         baseMapper.update(sysOrgPracManageEntity,new QueryWrapper<SysOrgPracManageEntity>()
                 .eq("org_id", sysOrgPracManageEntity.getOrgId())
-                .eq("prac_id",sysOrgPracManageEntity.getPracId()));
+                .eq("prac_id", sysOrgPracManageEntity.getPracId())
+                .eq("id", sysOrgPracManageEntity.getId()));
+        return true;
+
     }
 
     @Override
-    public void delete(Long Id) {
+    public Boolean delete(Long Id,Long orgId,Long pracId) {
+        SysOrgPracManageEntity entity = baseMapper.selectOne(new QueryWrapper<SysOrgPracManageEntity>()
+                .eq("org_id", orgId)
+                .eq("prac_id", pracId)
+                .eq("id",Id));
+        if(entity==null)
+        {
+            return false;
+        }
         baseMapper.deleteById(Id);
+        return true;
     }
 
     @Override
     public List<SysAllOrgPracEntity> getAllPrac() {
         return baseMapper.getAllPrac();
+    }
+
+    @Override
+    public Integer getAllPracNum(Long orgId) {
+        List<SysOrgPracManageEntity> allPracMessage = getAllPracMessage(orgId);
+        return allPracMessage.size();
     }
 
 

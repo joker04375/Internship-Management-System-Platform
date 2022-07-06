@@ -12,13 +12,16 @@ public interface SysOrgPracStuService extends BaseService<SysOrgPracStuEntity> {
 
     List<SysOrgPracStuEntity> getAllPracStuMessage(Long orgId, Long pracId);
 
-    void update(SysOrgPracStuEntity sysOrgPracStuEntity);
+    Boolean update(SysOrgPracStuEntity sysOrgPracStuEntity);
 
-    void delete(Long Id) ;
+    Boolean delete(Long Id,Long orgId, Long pracId,Long stuId) ;
 
-    List<SysOrgPracStuEntity> getAllAccessOrTestStu(@PathVariable("orgId") Long orgId,
-                                               @PathVariable("pracId") Long pracId);
+    List<SysOrgPracStuEntity> getAllApplyStu( Long orgId, Long pracId);
 
+    List<SysOrgPracStuEntity> getAllWorkingStu(Long orgId, Long pracId);
+
+    List<SysOrgPracStuEntity> getAllOutStu(Long orgId, Long pracId);
+    //void addApplyStu(SysStuApplyPostDTO sysStuApplyPostDTO);
 
 
 }

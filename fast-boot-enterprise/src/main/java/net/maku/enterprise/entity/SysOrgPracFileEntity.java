@@ -1,6 +1,8 @@
 package net.maku.enterprise.entity;
 
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -40,7 +42,7 @@ public class SysOrgPracFileEntity extends BaseEntity {
   /**
    *上传时间
    */
-  private java.sql.Timestamp uploadTime;
+  String uploadTime;
 
   /**
    *文件路径
@@ -49,10 +51,13 @@ public class SysOrgPracFileEntity extends BaseEntity {
 
 
   /**
-   *  leo
+   *  公司id
    */
   private long orgId;
 
+  /**
+   * 实习id
+   */
   private long pracId;
 
 

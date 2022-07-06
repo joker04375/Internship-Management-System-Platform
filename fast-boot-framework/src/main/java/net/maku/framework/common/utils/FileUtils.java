@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class FileUtils {
 
-    public static final String rootPath = "C://Users/kameh/Desktop/leo";
+    public static final String rootPath = "C://Users//test";
 
     public static String uploadCommonFile(MultipartFile file) {
         File fileDir = new File(rootPath);

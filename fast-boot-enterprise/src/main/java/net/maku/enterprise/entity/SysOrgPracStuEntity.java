@@ -2,8 +2,12 @@ package net.maku.enterprise.entity;
 
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+import net.maku.enterprise.common.OrgConstants;
 import net.maku.framework.common.entity.BaseEntity;
 
 
@@ -13,6 +17,8 @@ import net.maku.framework.common.entity.BaseEntity;
 @Data
 @EqualsAndHashCode(callSuper=false)
 @TableName("sys_org_prac_stu")
+@AllArgsConstructor
+@NoArgsConstructor
 public class SysOrgPracStuEntity extends BaseEntity {
 
   /**
@@ -33,7 +39,7 @@ public class SysOrgPracStuEntity extends BaseEntity {
   /**
    *学生学号
    */
-  private long stuId;
+  private String stuId;
 
   /**
    *学生姓名
@@ -51,7 +57,7 @@ public class SysOrgPracStuEntity extends BaseEntity {
   private String stuEmail;
 
   /**
-   *岗位
+   *岗位名称
    */
   private String post;
 
@@ -60,4 +66,16 @@ public class SysOrgPracStuEntity extends BaseEntity {
    */
   private long status;
 
+  /*public SysOrgPracStuEntity(SysStuApplyPostDTO DTO) {
+    this.orgId = DTO.getOrgId();
+    this.pracId = DTO.getPracId();
+    this.postId = DTO.getPostId();
+    this.stuId = DTO.getStuNum();
+    this.stuName = DTO.getName();
+    this.stuPhone = DTO.getPhonenum();
+    this.stuEmail = DTO.getEmail();
+    this.postId = DTO.getPostId();
+    this.status = OrgConstants.STU_STATUS_APPLY;
+    this.post=DTO.getPostName();
+  }*/
 }

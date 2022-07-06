@@ -13,8 +13,8 @@ public interface SysOrgPracFileService extends BaseService<SysOrgPracFileEntity>
 
     Boolean fileDownload(HttpServletResponse response,SysOrgPracFileEntity sysOrgPracFileEntity);
 
-    Boolean fileUpload(@RequestBody MultipartFile upLoadFile);
+    Boolean fileUpload(MultipartFile upLoadFile,String fileName,String uploder, String fileType, Long orgId,Long pracId);
 
-    List<SysOrgPracFileEntity> getAllFile(@PathVariable("orgId") Long orgId
-            , @PathVariable("pracId") Long pracId);
+    List<SysOrgPracFileEntity> getAllFile(Long orgId, Long pracId);
+
 }

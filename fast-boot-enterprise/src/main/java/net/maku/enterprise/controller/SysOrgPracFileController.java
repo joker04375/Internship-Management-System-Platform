@@ -38,15 +38,20 @@ public class SysOrgPracFileController {
         sysOrgPracFileService.fileDownload(response,sysOrgPracFileEntity);
     }
 
-    @GetMapping("file/upload")
+    @PostMapping("file/upload")
     @Operation(summary = "文件上传")
-    public Result<String> fileUpload(@RequestBody MultipartFile upLoadFile)
+    public Result<String> fileUpload(@RequestParam("file") MultipartFile upLoadFile,
+                                     @RequestParam("fileName") String fileName,
+                                     @RequestParam("uploder") String uploder,
+                                     @RequestParam("fileType") String fileType,
+                                     @RequestParam("orgId") Long orgId,
+                                     @RequestParam("pracId") Long pracId)
     {
-        sysOrgPracFileService.fileUpload(upLoadFile);
+        sysOrgPracFileService.fileUpload(upLoadFile,fileName,uploder,fileType,orgId,pracId);
         return Result.ok("上传成功");
     }
 
-    @GetMapping("file/getAllFile/{orgId}/{pracId}")
+    @GetMapping ("file/getAllFile/{orgId}/{pracId}")
     public Result<PageResult<SysOrgPracFileEntity>> getAllFile(@RequestBody Query query,
                                                                @PathVariable("orgId") Long orgId,
                                                                @PathVariable("pracId") Long pracId)
@@ -58,5 +63,11 @@ public class SysOrgPracFileController {
 
         return Result.ok(result);
     }
+
+
+
+
+
+
 
 }

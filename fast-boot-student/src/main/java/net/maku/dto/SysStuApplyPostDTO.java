@@ -12,4 +12,5 @@ public class SysStuApplyPostDTO {
     private String stuNum;
     private String phonenum;
     private String email;
+    private String postName;
 }

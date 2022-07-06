@@ -9,8 +9,8 @@ import net.maku.system.vo.SysOauthClientVO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-06-19T10:53:36+0800",
-    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 1.8.0_322 (Amazon.com Inc.)"
+    date = "2022-06-23T18:28:06+0800",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 1.8.0_332 (Amazon.com Inc.)"
 )
 public class SysOauthClientConvertImpl implements SysOauthClientConvert {
 

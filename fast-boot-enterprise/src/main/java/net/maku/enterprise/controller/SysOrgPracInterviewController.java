@@ -26,7 +26,6 @@ public class SysOrgPracInterviewController {
 
     private SysOrgPracInterviewService sysOrgPracInterviewService;
 
-
     @GetMapping("interview/{orgId}/{pracId}")
     @Operation(summary = "企业实习笔试面试信息")
     public Result<PageResult<SysOrgPracInterviewEntity>> getAllInterviews(
@@ -37,7 +36,7 @@ public class SysOrgPracInterviewController {
         List<SysOrgPracInterviewEntity> allInterviews = sysOrgPracInterviewService.getAllInterviews(orgId, pracId);
 
         Page pages = PageListUtils.getPages(query.getPage(), query.getLimit(), allInterviews);
-        PageResult result = new PageResult<>(pages.getRecords(), pages.getTotal());
+        PageResult<SysOrgPracInterviewEntity> result = new PageResult<>(pages.getRecords(), pages.getTotal());
         return Result.ok(result);
     }
 
