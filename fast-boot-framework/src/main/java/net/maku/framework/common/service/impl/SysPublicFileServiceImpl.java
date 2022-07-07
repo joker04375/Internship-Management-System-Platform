@@ -6,12 +6,16 @@ import net.maku.framework.common.dao.SysPublicFileDao;
 import net.maku.framework.common.entity.SysPublicFileEntity;
 import net.maku.framework.common.service.SysPublicFileService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.PostConstruct;
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 @Service
-@AllArgsConstructor
 public class SysPublicFileServiceImpl extends BaseServiceImpl<SysPublicFileDao,SysPublicFileEntity> implements SysPublicFileService {
+
+    String rootPath = "C:/Users/kameh/Desktop/jpg";
 
     @Override
     public SysPublicFileEntity getFileById(int orgId, int pracId, String fileId) {
@@ -22,9 +26,28 @@ public class SysPublicFileServiceImpl extends BaseServiceImpl<SysPublicFileDao,S
         return baseMapper.selectOne(queryWrapper);
     }
 
-    public static SysPublicFileService sysPublicFileService;
-    @PostConstruct
-    public void init() {
-        sysPublicFileService = this;
+    @Override
+    public String CreatePublicFile(int orgId, int pracId, MultipartFile file, int isCommon) {
+
+        File fileDir = new File(rootPath);
+        if (!fileDir.exists() && !fileDir.isDirectory())
+            fileDir.mkdirs();
+        //使用uuid工具
+        String uuid = UUID.randomUUID().toString();
+        String storagePath = rootPath +"/"+uuid+"_"+file.getOriginalFilename();
+        try {
+            file.transferTo(new File(storagePath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String fileId = UUID.randomUUID().toString();
+        SysPublicFileEntity fileEntity = new SysPublicFileEntity();
+        fileEntity.setFileId(fileId);
+        fileEntity.setFileUrl(storagePath);
+        fileEntity.setOrgId(orgId);
+        fileEntity.setPracId(pracId);
+        baseMapper.insert(fileEntity);
+        return fileId;
     }
 }

@@ -8,9 +8,8 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper=false)
 @TableName("sys_public_file")
-public class SysPublicFileEntity {
+public class SysPublicFileEntity extends BaseEntity{
 
-    int id;
     /*
      * 企业Id
      * */

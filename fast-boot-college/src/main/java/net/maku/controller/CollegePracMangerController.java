@@ -11,6 +11,7 @@ import net.maku.enterprise.entity.interation.SysAllOrgPracEntity;
 import net.maku.enterprise.service.*;
 import net.maku.framework.common.page.PageResult;
 import net.maku.framework.common.query.Query;
+import net.maku.framework.common.service.SysPublicFileService;
 import net.maku.framework.common.utils.FileUtils;
 import net.maku.framework.common.utils.PageListUtils;
 import net.maku.framework.common.utils.Result;
@@ -41,6 +42,7 @@ public class CollegePracMangerController {
 
     private final SysOrgPracFileService sysOrgPracFileService;
 
+    private final SysPublicFileService sysPublicFileService;
     /**
      * 查看所有实习项目
      * */
@@ -75,7 +77,7 @@ public class CollegePracMangerController {
      * 对企业实习项目中学生的查看
      * */
     @GetMapping("post/stu/{orgId}/{pracId}")
-    public Result<PageResult<SysOrgPracStuEntity>> getAllStuById(@Valid Query query, @PathVariable(name = "orgId") long orgId, @PathVariable(name = "pracId") long pracId) {
+    public Result<PageResult<SysOrgPracStuEntity>> getAllStuById(@RequestBody Query query, @PathVariable(name = "orgId") long orgId, @PathVariable(name = "pracId") long pracId) {
         List<SysOrgPracStuEntity> resultList = new ArrayList<>();
         // 对学生状态继续过滤（在实习中还是已结束）
         for (SysOrgPracStuEntity stuEntity : sysOrgPracStuService.getAllPracStuMessage(orgId, pracId)) {
