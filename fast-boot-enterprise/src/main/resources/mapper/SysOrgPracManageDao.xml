@@ -3,8 +3,10 @@
 
 <mapper namespace="net.maku.enterprise.dao.SysOrgPracManageDao">
     <select id="getAllPrac" resultType="net.maku.enterprise.entity.interation.SysAllOrgPracEntity">
-        select org.*, (select detail.name from sys_org_details detail where detail.org_id = org.org_id) orgName
-            from sys_org_prac_manage org
-                order by org.prac_status desc
+        SELECT detail.org_id,detail.prac_id,detail.prac_intro,detail.prac_addr,detail.prac_num,detail.prac_status,detail.prac_name,org.name
+        FROM `sys_org_prac_manage` AS detail
+                 LEFT JOIN `sys_org_details` AS org
+                           ON detail.org_id = org.org_id
+        ORDER BY detail.prac_status DESC
     </select>
 </mapper>

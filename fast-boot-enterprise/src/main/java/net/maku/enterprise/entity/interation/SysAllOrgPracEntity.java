@@ -1,5 +1,6 @@
 package net.maku.enterprise.entity.interation;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -14,11 +15,6 @@ import lombok.Data;
 public class SysAllOrgPracEntity {
 
     /**
-     * 企业名称
-     */
-    private String orgName;
-
-    /**
      *企业id
      */
     private long orgId;
@@ -29,9 +25,9 @@ public class SysAllOrgPracEntity {
     private long pracId;
 
     /**
-     *实习名称
+     *实习简介
      */
-    private String pracName;
+    private String pracIntro;
 
     /**
      *实习地点
@@ -43,14 +39,23 @@ public class SysAllOrgPracEntity {
      */
     private long pracNum;
 
+
     /**
      *实习状态
      */
     private long pracStatus;
-
+    /**
+     * 企业名称
+     */
+    private String name;
 
     /**
-     *实习简介
+     *实习名称
      */
-    private String pracIntro;
+    private String pracName;
+
+
+
+
+
 }

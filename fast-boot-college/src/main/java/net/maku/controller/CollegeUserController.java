@@ -9,15 +9,15 @@ import lombok.AllArgsConstructor;
 import net.maku.enterprise.entity.SysOrgDetailsEntity;
 import net.maku.framework.common.page.PageResult;
 import net.maku.framework.common.query.Query;
+import net.maku.framework.common.utils.FileUtils;
 import net.maku.framework.common.utils.PageListUtils;
 import net.maku.framework.common.utils.Result;
 import net.maku.service.CollegeUserService;
 import net.maku.system.entity.SysUserEntity;
-import net.maku.vo.CollegeUserVo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -37,4 +37,13 @@ public class CollegeUserController {
         return Result.ok(page);
     }
 
+    @GetMapping("/dowload/{orgId}/{pracId}/{fileId}")
+    public void DownFile(HttpServletResponse response,@PathVariable("orgId") int orgId,@PathVariable("pracId") int pracId,@PathVariable("fileId") String fileId){
+        FileUtils fileUtils = new FileUtils();
+        try {
+            String fileUrl = fileUtils.DownLoadFile(orgId, pracId, fileId, response);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
