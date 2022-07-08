@@ -2,6 +2,7 @@ package net.maku.framework.config;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import net.maku.framework.common.utils.DateUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.ByteArrayHttpMessageConverter;
@@ -12,6 +13,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.TimeZone;
 
@@ -42,7 +44,7 @@ public class WebConfig implements WebMvcConfigurer {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         // 统一日期格式转换，不建议开启
-        //mapper.setDateFormat(new SimpleDateFormat(DateUtils.DATE_TIME_PATTERN));
+//        mapper.setDateFormat(new SimpleDateFormat(DateUtils.DATE_TIME_PATTERN));
         mapper.setTimeZone(TimeZone.getTimeZone("GMT+8"));
 
         converter.setObjectMapper(mapper);

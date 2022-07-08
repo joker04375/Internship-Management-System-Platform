@@ -9,15 +9,17 @@ import lombok.AllArgsConstructor;
 import net.maku.enterprise.entity.SysOrgDetailsEntity;
 import net.maku.framework.common.page.PageResult;
 import net.maku.framework.common.query.Query;
+import net.maku.framework.common.service.SysPublicFileService;
+import net.maku.framework.common.utils.FileUtils;
 import net.maku.framework.common.utils.PageListUtils;
 import net.maku.framework.common.utils.Result;
 import net.maku.service.CollegeUserService;
 import net.maku.system.entity.SysUserEntity;
-import net.maku.vo.CollegeUserVo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.Valid;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -26,6 +28,7 @@ import java.util.List;
 @AllArgsConstructor
 public class CollegeUserController {
     private final CollegeUserService collegeUserService;
+    private final SysPublicFileService sysPublicFileService;
 
     @GetMapping("/info/{roleName}")
     @Operation(summary = "用户管理（针对不同角色）")
@@ -37,4 +40,12 @@ public class CollegeUserController {
         return Result.ok(page);
     }
 
+    @GetMapping("/upload")
+    public void UploadFile(@RequestParam("file") MultipartFile file){
+        int orgId = 1;
+        int pracId = 1;
+        String path = sysPublicFileService.CreatePublicFile(orgId, pracId, file);
+        System.out.println(path);
+    }
 }
+

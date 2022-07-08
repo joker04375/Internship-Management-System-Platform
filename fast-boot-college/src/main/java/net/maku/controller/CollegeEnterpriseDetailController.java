@@ -37,5 +37,4 @@ public class CollegeEnterpriseDetailController {
         SysOrgDetailsEntity details = sysOrgDetailsService.getDetails(orgId);
         return Result.ok(details);
     }
-
 }

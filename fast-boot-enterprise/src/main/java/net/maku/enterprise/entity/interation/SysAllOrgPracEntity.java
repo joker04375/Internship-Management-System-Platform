@@ -1,5 +1,6 @@
 package net.maku.enterprise.entity.interation;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -12,11 +13,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class SysAllOrgPracEntity {
-
-    /**
-     * 企业名称
-     */
-    private String orgName;
 
     /**
      *企业id
