@@ -62,6 +62,7 @@ public class SysOrgPracPostServiceImpl extends BaseServiceImpl<SysOrgPracPostDao
     public void changePostStatus(Integer id, Integer status) {
         SysOrgPracPostEntity sysOrgPracPostEntity = baseMapper.selectById(id);
         sysOrgPracPostEntity.setStatus(status);
+        sysOrgPracPostEntity.setDeleted(1);
         baseMapper.updateById(sysOrgPracPostEntity);
     }
 

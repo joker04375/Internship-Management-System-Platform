@@ -27,7 +27,7 @@ public class SysPublicFileServiceImpl extends BaseServiceImpl<SysPublicFileDao,S
     }
 
     @Override
-    public String CreatePublicFile(int orgId, int pracId, MultipartFile file, int isCommon) {
+    public String CreatePublicFile(int orgId, int pracId, MultipartFile file) {
 
         File fileDir = new File(rootPath);
         if (!fileDir.exists() && !fileDir.isDirectory())

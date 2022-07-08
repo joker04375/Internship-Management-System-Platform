@@ -44,7 +44,7 @@ public class CollegeUserController {
     public void UploadFile(@RequestParam("file") MultipartFile file){
         int orgId = 1;
         int pracId = 1;
-        String path = sysPublicFileService.CreatePublicFile(orgId, pracId, file, 0);
+        String path = sysPublicFileService.CreatePublicFile(orgId, pracId, file);
         System.out.println(path);
     }
 }
