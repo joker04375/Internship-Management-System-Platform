@@ -1,6 +1,7 @@
 package net.maku.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import net.maku.enterprise.entity.SysOrgPracFileEntity;
@@ -25,6 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("sys/college/prac")
@@ -43,11 +45,10 @@ public class CollegePracMangerController {
     private final SysOrgPracFileService sysOrgPracFileService;
 
     private final SysPublicFileService sysPublicFileService;
-    /**
-     * 查看所有实习项目
-     * */
+
     @GetMapping("home")
-    public Result<PageResult<SysAllOrgPracEntity>> getAllPracsByStatus(@RequestBody Query query) {
+    @Operation(summary = "查看所有实习项目")
+    public Result<PageResult<SysAllOrgPracEntity>> getAllPracsByStatus(Query query) {
         List<SysAllOrgPracEntity> allPrac = sysOrgPracManageService.getAllPrac();
         // 进行分页
         Page pages = PageListUtils.getPages(query.getPage(), query.getLimit(), allPrac);
@@ -55,29 +56,30 @@ public class CollegePracMangerController {
         return Result.ok(page);
     }
 
-    /**
-     * 获取某个实习项目下的所有岗位
-     * */
+
+    @GetMapping("search")
+    public Result<PageResult<SysAllOrgPracEntity>> getPracsByConditions(@RequestParam(required = false) Map<String,Object> conditions) {
+
+        return null;
+    }
+
     @GetMapping("/post/{orgId}/{pracId}")
+    @Operation(summary = "获取某个实习项目下的所有岗位")
     public Result<List<SysOrgPracPostEntity>> getAllPostByOrgId(@PathVariable(name = "orgId") long orgId, @PathVariable(name = "pracId") long pracId) {
         List<SysOrgPracPostEntity> allPracPostMessage = sysOrgPracPostService.getAllPracPostMessage(orgId, pracId);
         return Result.ok(allPracPostMessage);
     }
 
-    /**
-     * 是否通过该企业实习项目中的岗位
-     * */
     @PutMapping("post/status/{id}/{status}")
+    @Operation(summary = "是否通过该企业实习项目中的岗位")
     public Result<String> isAcceptPost(@PathVariable(name = "id") int id, @PathVariable(name = "status") int status){
         sysOrgPracPostService.changePostStatus(id,status);
         return Result.ok("success");
     }
 
-    /**
-     * 对企业实习项目中学生的查看
-     * */
     @GetMapping("post/stu/{orgId}/{pracId}")
-    public Result<PageResult<SysOrgPracStuEntity>> getAllStuById(@RequestBody Query query, @PathVariable(name = "orgId") long orgId, @PathVariable(name = "pracId") long pracId) {
+    @Operation(summary = "对企业实习项目中学生的查看")
+    public Result<PageResult<SysOrgPracStuEntity>> getAllStuById(Query query, @PathVariable(name = "orgId") long orgId, @PathVariable(name = "pracId") long pracId) {
         List<SysOrgPracStuEntity> resultList = new ArrayList<>();
         // 对学生状态继续过滤（在实习中还是已结束）
         for (SysOrgPracStuEntity stuEntity : sysOrgPracStuService.getAllPracStuMessage(orgId, pracId)) {
@@ -91,19 +93,15 @@ public class CollegePracMangerController {
         return Result.ok(page);
     }
 
-    /**
-    * 获取笔试面试管理信息
-    * */
     @GetMapping("post/interview/{orgId}/{pracId}")
+    @Operation(summary = "获取笔试面试管理信息")
     public Result<List<SysOrgPracInterviewEntity>> getAllInterview(@PathVariable(name = "orgId") long orgId, @PathVariable(name = "pracId") long pracId) {
         List<SysOrgPracInterviewEntity> allInterviews = sysOrgPracInterviewService.getAllInterviews(orgId, pracId);
         return Result.ok(allInterviews);
     }
 
-    /**
-     * 上传公共文件
-     * */
     @PostMapping("post/fileUpload/{orgId}/{pracId}")
+    @Operation(summary = "上传公共文件")
     public Result<String> submitForm(@RequestParam("file") MultipartFile file,
                                      @RequestParam("fileName") String fileName,
                                      @RequestParam("fileType") String fileType,

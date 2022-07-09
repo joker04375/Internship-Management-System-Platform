@@ -3,6 +3,7 @@ package net.maku.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import net.maku.enterprise.entity.SysOrgDetailsEntity;
@@ -28,10 +29,8 @@ public class CollegeFileController {
 
     private final SysPublicFileService sysPublicFileService;
 
-    /**
-     * 上传模板文件，待企业审批（审批后将passed字段设置为1）
-     * */
     @PostMapping("/uploadTemplate")
+    @Operation(summary = "上传模板文件，待企业审批（审批后将passed字段设置为1）")
     public Result<String> uploadTemplateFile(@RequestParam("orgId") int orgId,
                                              @RequestParam("pracId") int pracId,
                                              @RequestParam("file") MultipartFile file,
@@ -46,17 +45,16 @@ public class CollegeFileController {
         return Result.ok("success");
     }
 
-    /**
-     * 查看企业已上传的模板文件（根据是否通过进行排序（passed字段））
-     * */
     @GetMapping("/templateFile/{orgId}/{pracId}")
-    public Result<PageResult<SysPublicFileEntity>> getAllTemplateFile(@PathVariable("orgId") int orgId, @PathVariable("pracId") int pracId,@RequestBody Query query) {
+    @Operation(summary = "查看该企业下已上传的模板文件（根据是否通过进行排序（passed字段））")
+    public Result<PageResult<SysPublicFileEntity>> getAllTemplateFile(@PathVariable("orgId") int orgId, @PathVariable("pracId") int pracId,Query query) {
         List<SysPublicFileEntity> templateFiles = collegeFileService.list(new QueryWrapper<SysPublicFileEntity>().eq("orgId", orgId).eq("pracId", pracId).eq("is_common", 1).orderByAsc("passed"));
         // 进行分页
         Page pages = PageListUtils.getPages(query.getPage(), query.getLimit(), templateFiles);
         PageResult<SysPublicFileEntity> page = new PageResult<>(pages.getRecords(), pages.getTotal());
         return Result.ok(page);
     }
+
 
 
 

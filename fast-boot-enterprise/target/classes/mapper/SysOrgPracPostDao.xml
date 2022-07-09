@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.maku.enterprise.dao.SysOrgPracPostDao">
+    <select id="getAllOrgPost" resultType="net.maku.enterprise.entity.interation.SysAllOrgPostEntity">
+        SELECT w.`prac_name`,v.name,u.post_name,u.post_numb,u.post_ability,
+               u.post_intro,u.post_addr,u.post_treatment,u.post_others,
+               v.org_id,u.post_id,w.prac_id
+        FROM sys_org_prac_post u
+                 LEFT JOIN sys_org_details v
+                           ON u.`org_id`=v.`org_id`
+                 LEFT JOIN sys_org_prac_manage w
+                           ON w.`org_id`=v.`org_id` AND w.`prac_id`=u.`prac_id`
+    </select>
+
+</mapper>
