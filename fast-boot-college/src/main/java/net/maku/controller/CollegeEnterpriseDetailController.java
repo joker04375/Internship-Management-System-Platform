@@ -24,7 +24,7 @@ public class CollegeEnterpriseDetailController {
 
     @GetMapping("home")
     @Operation(summary = "企业管理")
-    public Result<PageResult<SysOrgDetailsEntity>> getAllEnterprise(@RequestBody Query query){
+    public Result<PageResult<SysOrgDetailsEntity>> getAllEnterprise(Query query){
         List<SysOrgDetailsEntity> allEnterprise = sysOrgDetailsService.getAllOrgDetails();
         // 进行分页
         Page pages = PageListUtils.getPages(query.getPage(), query.getLimit(), allEnterprise);
@@ -33,6 +33,7 @@ public class CollegeEnterpriseDetailController {
     }
 
     @GetMapping("detail/{orgId}")
+    @Operation(summary = "获取某个企业的详细信息")
     public Result<SysOrgDetailsEntity> getEnterpriseDetail(@PathVariable(name = "orgId") Long orgId) {
         SysOrgDetailsEntity details = sysOrgDetailsService.getDetails(orgId);
         return Result.ok(details);
