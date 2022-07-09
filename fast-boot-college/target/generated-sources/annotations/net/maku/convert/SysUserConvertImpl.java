@@ -8,8 +8,8 @@ import net.maku.vo.CollegeUserVo;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-07-07T16:53:35+0800",
-    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 1.8.0_322 (Amazon.com Inc.)"
+    date = "2022-07-09T15:46:16+0800",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 1.8.0_152 (Oracle Corporation)"
 )
 public class SysUserConvertImpl implements SysUserConvert {
 

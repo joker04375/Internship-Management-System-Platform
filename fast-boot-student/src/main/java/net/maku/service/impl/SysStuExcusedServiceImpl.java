@@ -39,12 +39,36 @@ public class SysStuExcusedServiceImpl extends BaseServiceImpl<SysStuExcusedDao, 
     @Override
     public void deleteExcused(Long id) {
         LambdaQueryWrapper<SysStuExcusedEntity> queryWrapper = new LambdaQueryWrapper<>();
-
-        //进程为0，状态0，id匹配
-        queryWrapper.eq(SysStuExcusedEntity::getProcess,0);
+        //状态0，id匹配
         queryWrapper.eq(SysStuExcusedEntity::getStatus,0);
         queryWrapper.eq(SysStuExcusedEntity::getId,id);
         sysStuExcusedDao.delete(queryWrapper);
+    }
+
+
+    @Override
+    public List<SysStuExcusedEntity> selectCollegeExcuseds() {
+        LambdaQueryWrapper<SysStuExcusedEntity> queryWrapper = new LambdaQueryWrapper<>();
+
+        //状态0，id匹配
+        queryWrapper.eq(SysStuExcusedEntity::getStatus,1);
+        List<SysStuExcusedEntity> sysStuExcusedEntities = sysStuExcusedDao.selectList(queryWrapper);
+        if(sysStuExcusedEntities==null){
+            return Collections.emptyList();
+        }
+        return sysStuExcusedEntities;
+    }
+
+    @Override
+    public List<SysStuExcusedEntity> selectEnterpriseExcuseds() {
+        LambdaQueryWrapper<SysStuExcusedEntity> queryWrapper = new LambdaQueryWrapper<>();
+        //状态0，id匹配
+        queryWrapper.eq(SysStuExcusedEntity::getStatus,0);
+        List<SysStuExcusedEntity> sysStuExcusedEntities = sysStuExcusedDao.selectList(queryWrapper);
+        if(sysStuExcusedEntities==null){
+            return Collections.emptyList();
+        }
+        return sysStuExcusedEntities;
     }
 
 }

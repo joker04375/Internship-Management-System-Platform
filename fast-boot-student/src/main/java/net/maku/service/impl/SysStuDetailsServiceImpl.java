@@ -3,8 +3,9 @@ package net.maku.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import lombok.AllArgsConstructor;
 import net.maku.dao.SysStuDetailsDao;
+import net.maku.dto.SysStuApplyPostDTO;
 import net.maku.entity.SysStuDetailsEntity;
-import net.maku.entity.SysStuExcusedEntity;
+import net.maku.framework.common.query.Query;
 import net.maku.framework.common.service.impl.BaseServiceImpl;
 import net.maku.service.SysStuDetailsService;
 import org.springframework.stereotype.Service;
@@ -12,13 +13,17 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class SysStuDetailsServiceImpl extends BaseServiceImpl<SysStuDetailsDao, SysStuDetailsEntity> implements SysStuDetailsService {
-    private final SysStuDetailsDao sysStuDetailsDao;
+    private SysStuDetailsDao sysStuDetailsDao;
 
     @Override
-    public SysStuDetailsEntity getByStuNum(String stuNum) {
+    public SysStuApplyPostDTO getStuAndPostByStuNum(String stuNum) {
+        return sysStuDetailsDao.getStuAndPostByStuNum(stuNum);
+    }
+
+    @Override
+    public SysStuDetailsEntity selectByUserId(Long userId) {
         LambdaQueryWrapper<SysStuDetailsEntity> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(SysStuDetailsEntity::getStuNum,stuNum);
-        SysStuDetailsEntity sysStuDetailsEntity = sysStuDetailsDao.selectOne(queryWrapper);
-        return sysStuDetailsEntity;
+        queryWrapper.eq(SysStuDetailsEntity::getUserId,userId);
+        return sysStuDetailsDao.selectOne(queryWrapper);
     }
 }

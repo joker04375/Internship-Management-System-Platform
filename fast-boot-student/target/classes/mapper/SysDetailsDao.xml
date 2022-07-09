@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.maku.dao.SysStuDetailsDao">
+
+    <select id="getStuAndPostByStuNum" resultType="net.maku.dto.SysStuApplyPostDTO">
+        SELECT up.user_id,up.org_id,up.prac_id,up.post_id,opp.post_name,st.name,st.stu_num,st.phonenum,st.email
+        FROM sys_stu_details st
+                 LEFT JOIN sys_user_post up
+                           ON st.user_id = up.user_id
+                 LEFT JOIN sys_org_prac_post opp
+                           ON up.org_id = opp.org_id AND up.prac_id = opp.prac_id AND up.post_id = opp.post_id
+        WHERE st.stu_num = #{stuNum}
+    </select>
+</mapper>

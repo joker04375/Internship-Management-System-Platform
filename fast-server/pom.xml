@@ -28,6 +28,11 @@
 			<artifactId>fast-boot-enterprise</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+		<dependency>
+			<groupId>net.maku</groupId>
+			<artifactId>fast-boot-student</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

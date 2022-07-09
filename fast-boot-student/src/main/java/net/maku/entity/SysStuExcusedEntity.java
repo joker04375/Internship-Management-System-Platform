@@ -1,9 +1,13 @@
 package net.maku.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import net.maku.framework.common.entity.BaseEntity;
+
+import java.util.Date;
 
 @Data
 @TableName("sys_stu_excused")
@@ -70,19 +74,14 @@ public class SysStuExcusedEntity extends BaseEntity {
     private String type;
 
     /**
-     * 请假时间
-     */
-    private String time;
-
-    /**
      * 请假原因
      */
     private String excusedReason;
 
     /**
-     * 请假去处
+     * 请假说明
      */
-    private String excusedAddress;
+    private String excusedDetails;
 
     /**
      * 相关附件
@@ -90,12 +89,17 @@ public class SysStuExcusedEntity extends BaseEntity {
     private String file;
 
     /**
-     * 审核状态
-     */
-    private long process;
-
-    /**
-     * 完成状态
+     * 状态
      */
     private long status;
+
+    /**
+     * 开始时间
+     */
+    private Date startTime;
+
+    /**
+     * 结束时间
+     */
+    private Date endTime;
 }
