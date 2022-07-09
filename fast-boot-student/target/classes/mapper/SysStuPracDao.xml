@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.maku.dao.SysStuPracDao">
+
+    <select id="getMyPracByUserId" resultType="net.maku.entity.SysStuPracEntity">
+        SELECT u.org_id,u.prac_id,u.post_id,u.stu_id,u.post,v.name AS org_name
+        FROM sys_org_prac_stu u
+                 LEFT JOIN sys_org_details v
+                           ON u.org_id = v.org_id and u.stu_id = #{userId}
+    </select>
+</mapper>

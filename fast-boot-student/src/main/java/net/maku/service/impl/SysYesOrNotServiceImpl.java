@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
+/**
+ * 审批功能
+ */
 public class SysYesOrNotServiceImpl implements SysYesOrNotService {
 
     private final SysStuExcusedDao sysStuExcusedDao;

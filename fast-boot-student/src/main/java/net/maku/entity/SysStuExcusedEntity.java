@@ -69,7 +69,7 @@ public class SysStuExcusedEntity extends BaseEntity {
     private String inContacts;
 
     /**
-     *请假类型
+     * 请假类型
      */
     private String type;
 

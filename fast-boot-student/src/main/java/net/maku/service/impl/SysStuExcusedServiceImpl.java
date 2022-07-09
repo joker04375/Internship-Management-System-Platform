@@ -62,6 +62,7 @@ public class SysStuExcusedServiceImpl extends BaseServiceImpl<SysStuExcusedDao, 
     @Override
     public List<SysStuExcusedEntity> selectEnterpriseExcuseds() {
         LambdaQueryWrapper<SysStuExcusedEntity> queryWrapper = new LambdaQueryWrapper<>();
+
         //状态0，id匹配
         queryWrapper.eq(SysStuExcusedEntity::getStatus,0);
         List<SysStuExcusedEntity> sysStuExcusedEntities = sysStuExcusedDao.selectList(queryWrapper);
