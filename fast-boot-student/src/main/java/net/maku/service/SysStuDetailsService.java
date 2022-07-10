@@ -8,4 +8,6 @@ public interface SysStuDetailsService extends BaseService<SysStuDetailsEntity> {
     SysStuApplyPostDTO getStuAndPostByStuNum(String stuNum);
 
     SysStuDetailsEntity selectByUserId(Long userId);
+
+    void updateByUserId(SysStuDetailsEntity sysStuDetailsEntity);
 }

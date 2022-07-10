@@ -28,7 +28,6 @@ public class ResumeController {
      * @return
      */
     @GetMapping("model")
-//    @PreAuthorize("hasAnyAuthority('sys:stu:resume')")
     public Result selectResume(){
         SysStuResumeEntity stuResumeEntity = sysStuResumeService.selectByUserId(SecurityUser.getUserId());
         if(ObjectUtil.isEmpty(stuResumeEntity)||stuResumeEntity==null){
@@ -51,8 +50,8 @@ public class ResumeController {
         LambdaQueryWrapper<SysStuResumeEntity> queryWrapper = new LambdaQueryWrapper<>();
         Long userId = SecurityUser.getUserId();
 
-        queryWrapper.eq(SysStuResumeEntity::getUserId,userId);
-        sysStuResume.setUserId(userId);
+        queryWrapper.eq(SysStuResumeEntity::getStuId,userId);
+        sysStuResume.setStuId(userId);
 
         sysStuResumeService.saveOrUpdate(sysStuResume,queryWrapper);
 

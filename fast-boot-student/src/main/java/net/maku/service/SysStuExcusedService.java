@@ -2,8 +2,7 @@ package net.maku.service;
 
 import net.maku.entity.SysStuExcusedEntity;
 import net.maku.framework.common.service.BaseService;
-import net.maku.framework.common.utils.Result;
-import org.apache.ibatis.annotations.Mapper;
+
 
 import java.util.List;
 

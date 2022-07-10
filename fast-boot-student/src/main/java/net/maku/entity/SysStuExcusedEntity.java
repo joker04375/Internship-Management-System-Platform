@@ -14,9 +14,19 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper=false)
 public class SysStuExcusedEntity extends BaseEntity {
     /**
-     * 用户id
+     * 学生id
      */
-    private long userId;
+    private long stuId;
+
+    /**
+     * 企业id
+     */
+    private long orgId;
+
+    /**
+     * 学院id
+     */
+    private long colId;
 
     /**
      * 姓名

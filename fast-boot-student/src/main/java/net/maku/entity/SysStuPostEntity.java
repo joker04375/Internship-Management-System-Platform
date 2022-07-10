@@ -11,9 +11,9 @@ import net.maku.framework.common.entity.BaseEntity;
 @EqualsAndHashCode(callSuper=false)
 public class SysStuPostEntity extends BaseEntity {
     /**
-     * 用户id
+     * 学生id
      */
-    Long userId;
+    Long stuId;
 
     /**
      * 实习id

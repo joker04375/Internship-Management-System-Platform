@@ -6,6 +6,7 @@ import net.maku.entity.SysStuExcusedEntity;
 import net.maku.framework.common.utils.FileUtils;
 import net.maku.framework.common.utils.Result;
 import net.maku.service.SysStuExcusedService;
+import net.maku.service.SysYesOrNotService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,6 +22,7 @@ import java.util.List;
 public class ExcusedController {
 
     private final SysStuExcusedService sysStuExcusedService;
+    private SysYesOrNotService sysYesOrNotService;
 
     /**
      * 请假查询
@@ -108,6 +110,33 @@ public class ExcusedController {
         return Result.ok("删除成功");
     }
 
+    /**
+     * 学院企业批准/不批准请假
+     */
+
+    @PutMapping("college/pass/{id}")
+    private Result ColPassExcused(@PathVariable("id") Long id){
+        sysYesOrNotService.ColPassExcused(id);
+        return Result.ok("学院批准");
+    }
+
+    @PutMapping("college/unpass/{id}")
+    private Result ColUnPassExcused(@PathVariable("id") Long id){
+        sysYesOrNotService.ColUnPassExcused(id);
+        return Result.ok("学院不批准");
+    }
+
+    @PutMapping("enterprise/pass/{id}")
+    private Result EntPassExcused(@PathVariable("id") Long id){
+        sysYesOrNotService.EntPassExcused(id);
+        return Result.ok("企业批准");
+    }
+
+    @PutMapping("enterprise/unpass/{id}")
+    private Result EntUnPassExcused(@PathVariable("id") Long id){
+        sysYesOrNotService.EntUnPassExcused(id);
+        return Result.ok("企业不批准");
+    }
 
     /**
      * 相差天数计算

@@ -3,7 +3,7 @@ package net.maku.vo;
 import lombok.Data;
 
 @Data
-public class SysStuResumeVO {
+public class SysStuDetailsVO {
     /**
      * 学生id
      */
@@ -35,12 +35,12 @@ public class SysStuResumeVO {
     private String major;
 
     /**
-     * 电话号码
+     * 电话
      */
     private String phonenum;
 
     /**
-     * 电子邮箱
+     * 邮箱
      */
     private String email;
 
@@ -48,19 +48,4 @@ public class SysStuResumeVO {
      * 地址
      */
     private String address;
-
-    /**
-     * 学习情况
-     */
-    private String contentStudy;
-
-    /**
-     * 项目经历
-     */
-    private String contentWork;
-
-    /**
-     * 个人能力
-     */
-    private String contentSpecialty;
 }

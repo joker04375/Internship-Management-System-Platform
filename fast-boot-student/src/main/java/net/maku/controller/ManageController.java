@@ -4,7 +4,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 
 import net.maku.entity.SysOrgPracStuEntity;
-import net.maku.entity.SysStuDetailsEntity;
 import net.maku.entity.SysStuPracEntity;
 import net.maku.framework.common.utils.Result;
 import net.maku.framework.security.user.SecurityUser;

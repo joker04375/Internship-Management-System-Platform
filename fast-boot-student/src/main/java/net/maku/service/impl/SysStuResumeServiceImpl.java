@@ -25,7 +25,7 @@ public class SysStuResumeServiceImpl extends BaseServiceImpl<SysStuResumeDao, Sy
     public SysStuResumeEntity selectByUserId(Long userId) {
         //根据当前用户id
         LambdaQueryWrapper<SysStuResumeEntity> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(SysStuResumeEntity::getUserId,userId);
+        queryWrapper.eq(SysStuResumeEntity::getStuId,userId);
         SysStuResumeEntity sysStuResumeEntity = sysStuResumeDao.selectOne(queryWrapper);
         return sysStuResumeEntity;
     }
@@ -35,7 +35,7 @@ public class SysStuResumeServiceImpl extends BaseServiceImpl<SysStuResumeDao, Sy
     public void deleteResumeByUserId() {
         //根据当前用户id
         LambdaQueryWrapper<SysStuResumeEntity> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(SysStuResumeEntity::getUserId,SecurityUser.getUserId());
+        queryWrapper.eq(SysStuResumeEntity::getStuId,SecurityUser.getUserId());
 
         //删除
         sysStuResumeDao.delete(queryWrapper);

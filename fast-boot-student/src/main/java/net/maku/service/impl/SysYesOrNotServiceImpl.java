@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import lombok.AllArgsConstructor;
 import net.maku.dao.SysStuExcusedDao;
 import net.maku.entity.SysStuExcusedEntity;
+import net.maku.framework.security.user.SecurityUser;
 import net.maku.service.SysYesOrNotService;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,8 @@ public class SysYesOrNotServiceImpl implements SysYesOrNotService {
     public void ColPassExcused(Long id) {
         LambdaQueryWrapper<SysStuExcusedEntity> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(SysStuExcusedEntity::getStatus,1);
+        queryWrapper.eq(SysStuExcusedEntity::getStuId,id);
+        queryWrapper.eq(SysStuExcusedEntity::getColId, SecurityUser.getUserId());
         SysStuExcusedEntity sysStuExcusedEntity = sysStuExcusedDao.selectOne(queryWrapper);
         sysStuExcusedEntity.setStatus(2);
         sysStuExcusedDao.updateById(sysStuExcusedEntity);
@@ -29,6 +32,8 @@ public class SysYesOrNotServiceImpl implements SysYesOrNotService {
     public void ColUnPassExcused(Long id) {
         LambdaQueryWrapper<SysStuExcusedEntity> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(SysStuExcusedEntity::getStatus,1);
+        queryWrapper.eq(SysStuExcusedEntity::getStuId,id);
+        queryWrapper.eq(SysStuExcusedEntity::getColId, SecurityUser.getUserId());
         SysStuExcusedEntity sysStuExcusedEntity = sysStuExcusedDao.selectOne(queryWrapper);
         sysStuExcusedEntity.setStatus(-1);
         sysStuExcusedDao.updateById(sysStuExcusedEntity);
@@ -37,9 +42,11 @@ public class SysYesOrNotServiceImpl implements SysYesOrNotService {
     @Override
     public void EntPassExcused(Long id) {
         LambdaQueryWrapper<SysStuExcusedEntity> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(SysStuExcusedEntity::getStatus,1);
+        queryWrapper.eq(SysStuExcusedEntity::getStatus,0);
+        queryWrapper.eq(SysStuExcusedEntity::getStuId,id);
+        queryWrapper.eq(SysStuExcusedEntity::getOrgId, SecurityUser.getUserId());
         SysStuExcusedEntity sysStuExcusedEntity = sysStuExcusedDao.selectOne(queryWrapper);
-        sysStuExcusedEntity.setStatus(2);
+        sysStuExcusedEntity.setStatus(1);
         sysStuExcusedDao.updateById(sysStuExcusedEntity);
     }
 
@@ -47,6 +54,8 @@ public class SysYesOrNotServiceImpl implements SysYesOrNotService {
     public void EntUnPassExcused(Long id) {
         LambdaQueryWrapper<SysStuExcusedEntity> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(SysStuExcusedEntity::getStatus,0);
+        queryWrapper.eq(SysStuExcusedEntity::getStuId,id);
+        queryWrapper.eq(SysStuExcusedEntity::getOrgId, SecurityUser.getUserId());
         SysStuExcusedEntity sysStuExcusedEntity = sysStuExcusedDao.selectOne(queryWrapper);
         sysStuExcusedEntity.setStatus(-1);
         sysStuExcusedDao.updateById(sysStuExcusedEntity);

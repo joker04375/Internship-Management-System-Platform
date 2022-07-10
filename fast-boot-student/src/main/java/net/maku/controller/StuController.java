@@ -1,14 +1,16 @@
 package net.maku.controller;
 
+import cn.hutool.core.bean.BeanUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import net.maku.entity.SysStuDetailsEntity;
+import net.maku.entity.SysStuResumeEntity;
 import net.maku.framework.common.utils.Result;
 import net.maku.framework.security.user.SecurityUser;
 import net.maku.service.SysStuDetailsService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import net.maku.vo.SysStuDetailsVO;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("sys/stu")
@@ -25,6 +27,23 @@ public class StuController {
     public Result getMyInfo() {
         SysStuDetailsEntity sysStuDetailsEntity = sysStuDetailsService.selectByUserId(SecurityUser.getUserId());
         return Result.ok(sysStuDetailsEntity);
+    }
+
+    /**
+     * 修改我的信息
+     * @return
+     */
+    @PutMapping("myInfo/change")
+    public Result ChangeMyInfo(@RequestBody SysStuDetailsVO sysStuDetailsVO) {
+        //类型转换
+        SysStuDetailsEntity sysStuDetailsEntity = BeanUtil.copyProperties(sysStuDetailsVO, SysStuDetailsEntity.class);
+
+        //根据当前用户id
+        LambdaQueryWrapper<SysStuDetailsEntity> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(SysStuDetailsEntity::getStuId,sysStuDetailsVO.getStuId());
+        sysStuDetailsService.update(sysStuDetailsEntity,queryWrapper);
+
+        return Result.ok("上传成功");
     }
 
 }
