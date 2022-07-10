@@ -1,5 +1,6 @@
 package net.maku.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import lombok.AllArgsConstructor;
 import net.maku.dao.SysStuPracDao;
 import net.maku.entity.SysStuPracEntity;

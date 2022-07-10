@@ -14,7 +14,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper=false)
 @TableName("sys_org_prac_stu")
 public class SysOrgPracStuEntity {
-
   /**
    *企业id
    */
