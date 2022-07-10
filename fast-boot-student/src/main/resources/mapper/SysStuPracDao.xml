@@ -7,7 +7,7 @@
         SELECT u.org_id,u.prac_id,u.post_id,u.stu_id,u.post,u.status,v.name AS org_name
         FROM sys_org_prac_stu u
                  LEFT JOIN sys_org_details v
-                           ON u.org_id = v.org_id and u.stu_id = #{userId}
-        where u.status >= 4
+                           ON u.org_id = v.org_id
+        where u.status >= 4 and u.stu_id = #{userId}
     </select>
 </mapper>
