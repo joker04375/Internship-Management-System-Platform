@@ -8,6 +8,6 @@
         FROM sys_org_prac_stu u
                  LEFT JOIN sys_org_details v
                            ON u.org_id = v.org_id
-        where u.status >= 4 and u.stu_id = #{userId}
+        where u.status >= 4 and u.stu_id = #{userId} and u.deleted = 0
     </select>
 </mapper>

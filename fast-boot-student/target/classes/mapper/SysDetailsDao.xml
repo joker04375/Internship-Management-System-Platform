@@ -10,6 +10,6 @@
                            ON st.user_id = up.user_id
                  LEFT JOIN sys_org_prac_post opp
                            ON up.org_id = opp.org_id AND up.prac_id = opp.prac_id AND up.post_id = opp.post_id
-        WHERE st.stu_num = #{stuNum}
+        WHERE st.stu_num = #{stuNum} and deleted = 0
     </select>
 </mapper>

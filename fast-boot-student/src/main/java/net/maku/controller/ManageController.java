@@ -43,8 +43,16 @@ public class ManageController {
         return Result.ok(sysStuPracEntities);
     }
 
+
+    /**
+     * 实习周报
+     * @return
+     */
     @PostMapping()
     public Result postMonthReport(){
         return Result.ok();
     }
+
+
+
 }

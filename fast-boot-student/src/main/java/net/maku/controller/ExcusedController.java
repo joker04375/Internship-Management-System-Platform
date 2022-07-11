@@ -65,31 +65,12 @@ public class ExcusedController {
      */
     @PostMapping("stu/apply")
     public Result applyExcused(@RequestParam("file") MultipartFile file,
-                               @RequestParam("excusedReason") String excusedReason,
-                               @RequestParam("startTime") String startTime,
-                               @RequestParam("endTime") String endTime,
-                               @RequestParam("excusedDetails") String excusedDetails
+                               @RequestBody SysStuExcusedEntity sysStuExcusedEntity
                                ){
-        SysStuExcusedEntity sysStuExcusedEntity = new SysStuExcusedEntity();
-
         //获取文件位置
         String file_addr = FileUtils.uploadCommonFile(file);
 
-        //String转Date
-        Date start_date = new Date();
-        Date end_date = new Date();
-        try {
-             start_date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(startTime);
-             end_date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(startTime);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
         sysStuExcusedEntity.setFile(file_addr);
-        sysStuExcusedEntity.setExcusedReason(excusedReason);
-        sysStuExcusedEntity.setStartTime(start_date);
-        sysStuExcusedEntity.setEndTime(end_date);
-        sysStuExcusedEntity.setExcusedDetails(excusedDetails);
 
         //设置状态
         sysStuExcusedEntity.setStatus(0);
