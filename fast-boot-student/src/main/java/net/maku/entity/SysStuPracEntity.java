@@ -44,5 +44,5 @@ public class SysStuPracEntity {
     /**
      * 日期
      */
-    String YearAndMonth;
+    Long YearAndMonth;
 }
