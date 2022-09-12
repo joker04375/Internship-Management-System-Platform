@@ -9,6 +9,7 @@ import net.maku.framework.common.utils.Result;
 import net.maku.security.service.SysUserService;
 import net.maku.system.entity.SysUserEntity;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,25 +31,39 @@ public class LoginController {
     private SysUserService sysUserService;
 
     //用户登录
-    @RequestMapping("login")
+    @GetMapping("login")
     public Result login(String username, String password, HttpSession session) {
         //查看用户是否存在
-        SysUserEntity sysUserEntity = sysUserService.CheckUser(username, PasswordEncoder.encode(password));
+        System.out.println(PasswordEncoder.encode(password));
+        SysUserEntity sysUserEntity = sysUserService.CheckUser(username);
 
         //判断用户是否存在
         if(sysUserEntity==null){
             //不存在
             return Result.error("用户不存在");
         }
+
+        //检查密码
+        Boolean matches = PasswordEncoder.matches(sysUserEntity.getPassword(), password);
+        if(!matches){
+            return Result.error("密码错误");
+        }
         //存在
         //随机生成token，作为登录令牌
         String token = UUID.randomUUID().toString();
 
         //SysUserEntity对象转换为Hash存储
+        System.out.println(sysUserEntity);
         Map<String, Object> map = BeanUtil.beanToMap(sysUserEntity,new HashMap<>(), CopyOptions.create()
                 .setIgnoreNullValue(true)
-                .setFieldValueEditor((fieldName,fieldValue)->fieldValue.toString()));
-
+                .setFieldValueEditor((fieldName,fieldValue)->{
+                    if (fieldValue == null){
+                        fieldValue = "0";
+                    }else {
+                        fieldValue = fieldValue + "";
+                    }
+                    return fieldValue;
+                }));
         //4.3存储
         String tokenKey=LOGIN_USER_KEY + token;
         stringRedisTemplate.opsForHash().putAll(tokenKey,map);

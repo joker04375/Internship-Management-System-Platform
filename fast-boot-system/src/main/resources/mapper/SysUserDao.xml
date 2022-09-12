@@ -8,4 +8,10 @@
         from sys_user
         where username = #{username} and password = #{password}
     </select>
+    <select id="selectUserByUserName" resultType="net.maku.system.entity.SysUserEntity">
+        select *
+        from sys_user
+        where username = #{username}
+    </select>
+
 </mapper>

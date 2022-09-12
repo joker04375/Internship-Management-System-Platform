@@ -1,9 +1,10 @@
 spring:
   redis:
     database: 1
-    host: localhost
+#    host: localhost
+    host: 192.168.153.129
     port: 6379
-    #password:
+    password: 123
     #timeout: 6000ms  # 连接超时时长（毫秒）
   datasource:
     druid:

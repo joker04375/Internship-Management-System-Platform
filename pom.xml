@@ -33,6 +33,7 @@
         <springdoc.version>1.6.8</springdoc.version>
         <hutool.version>5.7.22</hutool.version>
         <spring-web.version>2.6.7</spring-web.version>
+        <spring-test.version>2.6.7</spring-test.version>
     </properties>
 
     <dependencies>
@@ -45,6 +46,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -53,7 +58,11 @@
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>${spring-web.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring-test.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
@@ -64,7 +73,6 @@
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatisplus.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
