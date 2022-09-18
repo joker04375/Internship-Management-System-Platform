@@ -65,9 +65,17 @@ public class LoginController {
                     return fieldValue;
                 }));
         //4.3存储
-        String tokenKey=LOGIN_USER_KEY + token;
+        String tokenKey = LOGIN_USER_KEY + token;
         stringRedisTemplate.opsForHash().putAll(tokenKey,map);
         stringRedisTemplate.expire(tokenKey, RedisConstants.LOGIN_USER_TTL, TimeUnit.MINUTES);
-        return Result.ok(token);
+        return Result.ok(token + "-" + sysUserEntity.getRoleId());
+    }
+
+    //用户登录
+    @GetMapping("logout")
+    public Result logout(String token) {
+        String tokenKey = LOGIN_USER_KEY + token;
+        stringRedisTemplate.delete(tokenKey);
+        return Result.ok("登出成功");
     }
 }

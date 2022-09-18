@@ -59,4 +59,6 @@ public class SysUserEntity extends BaseEntity {
      */
     @TableField(exist=false)
     private String orgName;
+
+    private Long roleId;
 }
