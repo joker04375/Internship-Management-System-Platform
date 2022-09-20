@@ -15,6 +15,7 @@ import net.maku.framework.common.page.PageResult;
 import net.maku.framework.common.query.Query;
 import net.maku.framework.common.utils.PageListUtils;
 import net.maku.framework.common.utils.Result;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -192,7 +193,7 @@ public class CollegePracMangerController {
             for (SysOrgCollegePracEntity pracEntity : pracsInfo) {
                 pracIds.add(pracEntity.getOrgPracId());
             }
-            long count = sysOrgPracStuService.count(new QueryWrapper<SysOrgPracStuEntity>().in("status",3,4).in("prac_id",pracIds));
+            long count = ObjectUtils.isEmpty(pracIds) ? 0 : sysOrgPracStuService.count(new QueryWrapper<SysOrgPracStuEntity>().in("status",3,4).in("prac_id",pracIds));
             collegePrac.setStuNum(count);
         }
         return Result.ok(orgPracs);
