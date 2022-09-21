@@ -11,6 +11,7 @@ import net.maku.framework.common.service.impl.BaseServiceImpl;
 import net.maku.college.service.SysCollegeUserService;
 import net.maku.system.entity.SysUserEntity;
 import net.maku.college.vo.CollegeUserVo;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.List;
 public class SysCollegeUserServiceImpl extends BaseServiceImpl<SysCollegeUserDao, SysUserEntity> implements SysCollegeUserService {
 
     @Override
-    public List<SysUserEntity> getAllUserByRoleAndOrg(String roleName, long orgId) {
+    public List<SysUserEntity> getAllUserByRoleAndOrg(@Param("roleName") String roleName,@Param("orgId") long orgId) {
         List<SysUserEntity> users = baseMapper.getAllUserByRoleAndOrg(roleName,orgId);
         return users;
     }
