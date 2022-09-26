@@ -12,5 +12,5 @@ public interface SysStuDetailsDao extends BaseDao<SysStuDetailsEntity> {
      * @param stuNum
      * @return
      */
-    SysStuApplyPostDTO getStuAndPostByStuNum(String stuNum);
+    SysStuApplyPostDTO getStuAndPostByStuNum(Long stuNum);
 }

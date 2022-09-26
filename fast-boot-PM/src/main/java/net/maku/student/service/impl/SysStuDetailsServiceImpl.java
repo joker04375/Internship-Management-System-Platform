@@ -17,7 +17,7 @@ public class SysStuDetailsServiceImpl extends BaseServiceImpl<SysStuDetailsDao, 
     private SysStuDetailsDao sysStuDetailsDao;
 
     @Override
-    public SysStuApplyPostDTO getStuAndPostByStuNum(String stuNum) {
+    public SysStuApplyPostDTO getStuAndPostByStuNum(Long stuNum) {
         return sysStuDetailsDao.getStuAndPostByStuNum(stuNum);
     }
 

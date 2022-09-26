@@ -9,7 +9,6 @@ public class SysStuApplyPostDTO {
     private Long pracId;
     private Long postId;
     private String name;
-    private String stuNum;
     private String phonenum;
     private String email;
     private String postName;

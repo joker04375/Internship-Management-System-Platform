@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.maku.student.dao.SysStuFileDao">
+
+
+    <select id="selectModelFilesByStuId" resultType="net.maku.student.entity.CollegeModelFileEntity">
+        select *
+        from sys_college_pattern_file u
+                 left join
+             (select v.time_id,v.college_id
+              from sys_org_prac_stu u
+                       left join sys_org_college_prac v
+                                 on u.org_id = v.org_id and u.prac_id = v.org_prac_id
+              where  u.STATUS = 4 and u.stu_id = #{userId} and u.deleted = 0) v
+             on u.time_id = v.time_id and u.college_id = v.college_id
+    </select>
+</mapper>

@@ -6,7 +6,7 @@ import net.maku.student.dto.SysStuApplyPostDTO;
 import net.maku.student.entity.SysStuDetailsEntity;
 
 public interface SysStuDetailsService extends BaseService<SysStuDetailsEntity> {
-    SysStuApplyPostDTO getStuAndPostByStuNum(String stuNum);
+    SysStuApplyPostDTO getStuAndPostByStuNum(Long stuNum);
 
     SysStuDetailsEntity selectByUserId(Long userId);
 
