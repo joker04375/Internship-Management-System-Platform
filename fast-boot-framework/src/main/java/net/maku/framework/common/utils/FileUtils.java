@@ -15,7 +15,7 @@ import java.net.URLEncoder;
 
 public class FileUtils {
 
-    public static final String rootPath = "C://Users/kameh/Desktop/leo";
+    public static final String rootPath = "E://下载";
 
     // 上传文件至服务器 返回的是存储的绝对地址
     public static String uploadCommonFile(MultipartFile file) {

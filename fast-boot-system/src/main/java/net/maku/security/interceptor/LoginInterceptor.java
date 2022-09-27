@@ -1,6 +1,5 @@
 package net.maku.security.interceptor;
 
-import cn.hutool.core.util.StrUtil;
 import net.maku.utils.UserHolder;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.servlet.HandlerInterceptor;

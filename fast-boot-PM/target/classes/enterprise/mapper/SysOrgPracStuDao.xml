@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.maku.enterprise.dao.SysOrgPracStuDao">
+    <!--lzm-->
+    <select id="getAllStusByPracs" parameterType="java.util.List" resultType="net.maku.enterprise.entity.SysOrgPracStuEntity">
+        SELECT w.`prac_name`,v.name,u.post_name,u.post_numb,u.post_ability,
+               u.post_intro,u.post_addr,u.post_treatment,u.post_others,
+               v.org_id,u.post_id,w.prac_id
+        FROM sys_org_prac_post u
+                 LEFT JOIN sys_org_details v
+                           ON u.`org_id`=v.`org_id`
+                 LEFT JOIN sys_org_prac_manage w
+                           ON w.`org_id`=v.`org_id` AND w.`prac_id`=u.`prac_id`
+    </select>
+
+    <!--lzm-->
+    <select id="getAllStuPracByOrgAndPracId" resultType="net.maku.enterprise.dto.SysStuPracDetailDto">
+        SELECT u.org_id,v.name as orgName,u.prac_id,u.post_id,u.post as postName,u.stu_id,u.stu_name,u.stu_phone,u.stu_email,u.status
+        FROM sys_org_prac_stu u
+                 LEFT JOIN sys_org_details v
+                           ON u.`org_id`=v.`org_id`
+                 WHERE u.org_id = #{orgId} and u.prac_id = #{pracId}
+    </select>
+
+    <!--lzm-->
+    <select id="getStusByConditions" parameterType="java.util.Map" resultType="net.maku.enterprise.entity.SysOrgPracStuEntity">
+        SELECT u.org_id,v.name as orgName,u.prac_id,u.post_id,u.post as postName,u.stu_id,u.stu_name,u.stu_phone,u.stu_email,u.status
+        FROM sys_org_prac_stu u
+                 LEFT JOIN sys_org_details v
+                           ON u.`org_id`=v.`org_id`
+        <where>
+            <if test="orgId != null and orgId != ''">
+                and u.org_id = #{orgId}
+            </if>
+            <if test="pracId != null and pracId != ''">
+                and u.prac_id = #{pracId}
+            </if>
+            <if test="stuId != null and stuId != ''">
+                and u.stu_id like "%"#{stuId}"%"
+            </if>
+            <if test="stuName != null and stuName != ''">
+                and u.stu_name like "%"#{stuName}"%"
+            </if>
+        </where>
+    </select>
+</mapper>

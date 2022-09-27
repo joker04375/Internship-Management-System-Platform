@@ -7,6 +7,8 @@ import net.maku.student.entity.CollegeModelFileEntity;
 import net.maku.student.service.SysStuFileService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class SysStuFileServiceImpl implements SysStuFileService {
@@ -18,7 +20,7 @@ public class SysStuFileServiceImpl implements SysStuFileService {
      * @return
      */
     @Override
-    public CollegeModelFileEntity selectModelFilesByStuId(Long userId) {
+    public List<CollegeModelFileEntity> selectModelFilesByStuId(Long userId) {
         return sysStuFileDao.selectModelFilesByStuId(userId);
     }
 

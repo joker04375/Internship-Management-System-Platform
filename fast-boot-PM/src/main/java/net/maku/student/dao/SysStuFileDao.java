@@ -4,6 +4,8 @@ import net.maku.student.entity.CollegeModelFileEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 @Mapper
 public interface SysStuFileDao {
     /**
@@ -11,5 +13,5 @@ public interface SysStuFileDao {
      * @param userId
      * @return
      */
-    CollegeModelFileEntity selectModelFilesByStuId(@Param("userId") Long userId);
+    List<CollegeModelFileEntity> selectModelFilesByStuId(@Param("userId") Long userId);
 }
