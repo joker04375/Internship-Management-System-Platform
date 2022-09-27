@@ -15,5 +15,6 @@ public interface SysStuManageDao extends BaseDao<SysOrgPracStuEntity> {
      * @param userId
      * @return
      */
-    List<SysStuPracTimeEntity> getMyPracByUserId(@Param("userId")Long userId);
+    List<SysStuPracTimeEntity> getMyPracByUserId(@Param("userId")Long userId,@Param("timeId")Long timeId);
+
 }

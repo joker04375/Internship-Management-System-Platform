@@ -19,9 +19,8 @@ import java.util.List;
 @AllArgsConstructor
 public class SysStuManageServiceImpl extends BaseServiceImpl<SysStuManageDao, SysOrgPracStuEntity> implements SysStuManageService {
     private final SysStuManageDao sysStuManageDao;
-    public List<SysStuPracTimeEntity> getMyPracByUserId(Long userId){
-        Date date = new Date();
-        List<SysStuPracTimeEntity> sysStuPracEntities = sysStuManageDao.getMyPracByUserId(userId);
+    public List<SysStuPracTimeEntity> getMyPracByUserId(Long userId,Long timeId){
+        List<SysStuPracTimeEntity> sysStuPracEntities = sysStuManageDao.getMyPracByUserId(userId,timeId);
         for (SysStuPracTimeEntity sysStuPracEntity : sysStuPracEntities) {
             sysStuPracEntity.setYearAndMonth(sysStuPracEntity.getPracId());
         }

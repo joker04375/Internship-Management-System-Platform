@@ -13,5 +13,6 @@ public interface SysStuManageService extends BaseService<SysOrgPracStuEntity> {
      * @param userId
      * @return
      */
-    List<SysStuPracTimeEntity> getMyPracByUserId(Long userId);
+    List<SysStuPracTimeEntity> getMyPracByUserId(Long userId,Long timeId);
+
 }

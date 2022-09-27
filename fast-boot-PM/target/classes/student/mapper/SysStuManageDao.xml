@@ -10,7 +10,12 @@
                            on u.org_id = v.org_id
                  Left join sys_org_college_prac w
                            on v.org_id = w.org_id
-        where u.status >= 4 and u.stu_id = #{userId} and u.deleted = 0
+        where u.status >= 4 and u.stu_id = #{userId}
+          <if test="timeId!=null">
+              and time_id = #{timeId}
+          </if>
+          and u.deleted = 0
     </select>
+
 
 </mapper>

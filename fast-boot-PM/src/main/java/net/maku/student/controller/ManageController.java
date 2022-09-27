@@ -37,11 +37,13 @@ public class ManageController {
      * @return
      */
     @GetMapping("myPracInfo")
-    public Result getMyPracInfo() {
+    public Result getMyPracInfo(Long timeId) {
 //        List<SysStuPracTimeEntity> sysStuPracEntities= sysStuPracService.getMyPracByUserId(SecurityUser.getUserId());
-        List<SysStuPracTimeEntity> myPracByUserId = sysStuManageService.getMyPracByUserId(UserHolder.getUser().getId());
+        List<SysStuPracTimeEntity> myPracByUserId = sysStuManageService.getMyPracByUserId(UserHolder.getUser().getId(),timeId);
         return Result.ok(myPracByUserId);
     }
+
+
 
 
     /**
