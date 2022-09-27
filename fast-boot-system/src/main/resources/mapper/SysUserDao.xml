@@ -3,12 +3,12 @@
 
 <mapper namespace="net.maku.security.dao.SysUserDao">
 
-    <select id="CheckUser" resultType="net.maku.system.entity.SysUserEntity">
+    <select id="CheckUser" resultType="net.maku.security.entity.SysUserEntity">
         select *
         from sys_user
         where username = #{username} and password = #{password}
     </select>
-    <select id="selectUserByUserName" resultType="net.maku.system.entity.SysUserEntity">
+    <select id="selectUserByUserName" resultType="net.maku.security.entity.SysUserEntity">
         select *
         from sys_user
         where username = #{username}

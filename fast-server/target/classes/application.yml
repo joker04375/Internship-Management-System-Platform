@@ -23,7 +23,7 @@ spring:
 
 
 mybatis-plus:
-  mapper-locations: classpath*:/mapper/**/*.xml,classpath:enterprise/mapper/**.xml,classpath:college/mapper/**.xml,classpath:student/mapper/**.xml
+  mapper-locations: classpath*:/mapper/**/*.xml,classpath:enterprise/mapper/**.xml,classpath:college/mapper/**.xml,classpath:student/mapper/**.xml,classpath:security/mapper/**xml
   # 实体扫描，多个package用逗号或者分号分隔
   typeAliasesPackage: net.maku.*.entity
   global-config:

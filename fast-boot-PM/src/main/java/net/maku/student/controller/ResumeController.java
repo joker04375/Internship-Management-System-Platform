@@ -10,7 +10,7 @@ import net.maku.framework.common.utils.Result;
 import net.maku.student.entity.SysStuResumeEntity;
 import net.maku.student.service.SysStuResumeService;
 import net.maku.student.vo.SysStuResumeVO;
-import net.maku.utils.UserHolder;
+import net.maku.security.utils.UserHolder;
 import org.springframework.web.bind.annotation.*;
 
 

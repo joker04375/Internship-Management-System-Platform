@@ -9,7 +9,7 @@ import net.maku.framework.common.page.PageResult;
 import net.maku.framework.common.query.Query;
 import net.maku.framework.common.service.impl.BaseServiceImpl;
 import net.maku.college.service.SysCollegeUserService;
-import net.maku.system.entity.SysUserEntity;
+import net.maku.security.entity.SysUserEntity;
 import net.maku.college.vo.CollegeUserVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;

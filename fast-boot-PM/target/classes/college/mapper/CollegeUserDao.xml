@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="net.maku.college.dao.SysCollegeUserDao">
-  <select id="getAllUserByRoleAndOrg" resultType="net.maku.system.entity.SysUserEntity">
+  <select id="getAllUserByRoleAndOrg" resultType="net.maku.security.entity.SysUserEntity">
       SELECT u.*, r.name roleName, (SELECT o.name FROM sys_org o WHERE o.id = u.org_id) orgName
       FROM sys_user u
                JOIN sys_user_role t3

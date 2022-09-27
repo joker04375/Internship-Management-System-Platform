@@ -1,6 +1,7 @@
-package net.maku.utils;
+package net.maku.security.utils;
 
-import net.maku.system.entity.SysUserEntity;
+
+import net.maku.security.entity.SysUserEntity;
 
 public class UserHolder {
     private static final ThreadLocal<SysUserEntity> tl = new ThreadLocal<>();

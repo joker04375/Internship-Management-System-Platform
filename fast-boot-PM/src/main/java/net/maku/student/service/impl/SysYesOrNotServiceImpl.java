@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import net.maku.student.dao.SysStuExcusedDao;
 import net.maku.student.entity.SysStuExcusedEntity;
 import net.maku.student.service.SysYesOrNotService;
-import net.maku.utils.UserHolder;
+import net.maku.security.utils.UserHolder;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -8,7 +8,7 @@ import net.maku.framework.common.utils.Result;
 import net.maku.student.entity.SysStuDetailsEntity;
 import net.maku.student.service.SysStuDetailsService;
 import net.maku.student.vo.SysStuDetailsVO;
-import net.maku.utils.UserHolder;
+import net.maku.security.utils.UserHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

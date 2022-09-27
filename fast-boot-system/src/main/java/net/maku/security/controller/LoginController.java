@@ -7,8 +7,9 @@ import net.maku.framework.common.utils.PasswordEncoder;
 import net.maku.framework.common.utils.RedisConstants;
 import net.maku.framework.common.utils.Result;
 import net.maku.security.service.SysUserService;
-import net.maku.system.entity.SysUserEntity;
+import net.maku.security.entity.SysUserEntity;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -76,6 +77,7 @@ public class LoginController {
     public Result logout(String token) {
         String tokenKey = LOGIN_USER_KEY + token;
         stringRedisTemplate.delete(tokenKey);
+        SecurityContextHolder.clearContext();
         return Result.ok("登出成功");
     }
 }

@@ -7,7 +7,7 @@ import net.maku.framework.common.utils.Result;
 
 import net.maku.student.entity.SysStuPracTimeEntity;
 import net.maku.student.service.SysStuManageService;
-import net.maku.utils.UserHolder;
+import net.maku.security.utils.UserHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

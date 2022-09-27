@@ -9,7 +9,7 @@ import net.maku.framework.common.utils.Result;
 import net.maku.student.entity.SysStuExcusedEntity;
 import net.maku.student.service.SysStuExcusedService;
 import net.maku.student.service.SysYesOrNotService;
-import net.maku.utils.UserHolder;
+import net.maku.security.utils.UserHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 

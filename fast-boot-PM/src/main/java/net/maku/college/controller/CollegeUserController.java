@@ -7,13 +7,11 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import net.maku.framework.common.page.PageResult;
 import net.maku.framework.common.query.Query;
-import net.maku.framework.common.service.SysPublicFileService;
 import net.maku.framework.common.utils.PageListUtils;
 import net.maku.framework.common.utils.Result;
 import net.maku.college.service.SysCollegeUserService;
-import net.maku.system.entity.SysUserEntity;
+import net.maku.security.entity.SysUserEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 

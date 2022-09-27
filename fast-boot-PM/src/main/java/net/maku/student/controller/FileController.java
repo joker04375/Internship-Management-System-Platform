@@ -5,9 +5,8 @@ import net.maku.framework.common.utils.FileUtils;
 import net.maku.framework.common.utils.Result;
 import net.maku.student.entity.CollegeModelFileEntity;
 import net.maku.student.service.SysStuFileService;
-import net.maku.utils.UserHolder;
+import net.maku.security.utils.UserHolder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

@@ -1,6 +1,6 @@
 package net.maku.college.convert;
 
-import net.maku.system.entity.SysUserEntity;
+import net.maku.security.entity.SysUserEntity;
 import net.maku.college.vo.CollegeUserVo;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;

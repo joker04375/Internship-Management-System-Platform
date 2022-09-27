@@ -5,13 +5,9 @@ import lombok.AllArgsConstructor;
 import net.maku.framework.common.utils.FileUtils;
 import net.maku.framework.common.utils.Result;
 import net.maku.student.entity.SysStuReportEntity;
-import net.maku.utils.UserHolder;
+import net.maku.security.utils.UserHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.security.Security;
 
 @RestController
 @RequestMapping("sys/stu/report")
